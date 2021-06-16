@@ -1,0 +1,18 @@
+CREATE DATABASE ymarks
+  DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
+
+USE ymarks;
+
+CREATE TABLE IF NOT EXISTS `objects` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `point` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+INSERT INTO `objects` (`id`, `name`, `point`) VALUES
+(1, 'Тверская 9', '55.75985606898725,37.61054750000002'),
+(2, 'Тверская, 20', '55.766642568974845,37.60237299999997'),
+(3, 'Охотный Ряд, 1 ', '55.75805306898262,37.6160005'),
+(4, 'Солянка, 16 ', '55.75061056899327,37.64180899999995');
