@@ -4,6 +4,7 @@
 }
 
 .adt {
-    color: red;
+    color: #ff0000;
     font-size: 18px;
+    font-weight: bold;
 }
