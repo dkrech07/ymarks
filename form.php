@@ -91,19 +91,10 @@ function excel2mysql($worksheet, $connection, $table_name, $columns_name_line = 
     return true;
 }
 
-// Соединение с базой MySQL
-$connection = new mysqli("localhost", "root", "root", "ymarks");
-// Выбираем кодировку UTF-8
-$connection->set_charset("utf8");
-
 // Загружаем файл Excel
 $PHPExcel_file = PHPExcel_IOFactory::load($file_url);
 
 // Перебираем все листы Excel и преобразуем в таблицу MySQL
 foreach ($PHPExcel_file->getWorksheetIterator() as $index => $worksheet) {
     echo excel2mysql($worksheet, $connection, "excel2mysql" . ($index != 0 ? $index : ""), 1) ? "OK\n" : "FAIL\n";
-}
-
-if (isset($file_name)) {
-    header('Location: index.php');
 }
