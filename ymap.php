@@ -15,7 +15,7 @@ function init() {
     <?php foreach ($list as $row): ?>
 
     // Поиск координат переданного адреса;
-    ymaps.geocode('<?php echo $row['address']; ?>', {
+    ymaps.geocode('<?php echo $row['ADRTAM']; ?>', {
         /**
          * Опции запроса
          * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/geocode.xml
