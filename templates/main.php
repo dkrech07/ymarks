@@ -1,5 +1,6 @@
 <div id="map" style="width: 100%; height:500px"></div>
 
+<link rel="stylesheet" href="css/style.css">
 <script src="https://api-maps.yandex.ru/2.1/?apikey=4f3c09de-626b-498a-bc29-cff656b39532&lang=ru_RU" type="text/javascript"></script>
 <script src="direct_geocode.js" type="text/javascript"></script>
 
@@ -45,3 +46,11 @@ function init() {
     <?php endforeach; ?>
 }
 </script>
+
+<form class="upload-form" method="post" action="index.php" enctype="multipart/form-data">
+    <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+    <input type="file" name="uploadfile">
+    <input type="submit" value="Загрузить файл">
+</form>
+
+<p class="adt">ВАЖНО! Столбец с адресами в загружаемой таблице должен быть назван: ADRTAM </p>
