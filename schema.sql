@@ -4,9 +4,8 @@ CREATE DATABASE ymarks
 
 USE ymarks;
 
-CREATE TABLE IF NOT EXISTS `objects` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `point` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+CREATE TABLE objects (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    name VARCHAR(128),
+    address VARCHAR(128)
+);

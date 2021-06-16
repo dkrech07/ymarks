@@ -9,11 +9,13 @@ ymaps.ready(init);
 function init() {
     var myMap = new ymaps.Map('map', {
         center: [55.753994, 37.622093],
-        zoom: 9
+        zoom: 3
     });
 
+    <?php foreach ($list as $row): ?>
+
     // Поиск координат переданного адреса;
-    ymaps.geocode('Екатеринбург, Решетникова 4', {
+    ymaps.geocode('<?php echo $row['address']; ?>', {
         /**
          * Опции запроса
          * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/geocode.xml
@@ -38,11 +40,8 @@ function init() {
 
             // Добавляем первый найденный геообъект на карту.
             myMap.geoObjects.add(firstGeoObject);
-            // Масштабируем карту на область видимости геообъекта.
-            myMap.setBounds(bounds, {
-                // Проверяем наличие тайлов на данном масштабе.
-                checkZoomRange: true
-            });
         });
+
+    <?php endforeach; ?>
 }
 </script>
