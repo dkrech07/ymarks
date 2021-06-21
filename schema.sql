@@ -4,8 +4,8 @@ CREATE DATABASE ymarks
 
 USE ymarks;
 
-CREATE TABLE objects (
+CREATE TABLE excel2mysql (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
     name VARCHAR(128),
-    address VARCHAR(128)
+    ADRTAM VARCHAR(128)
 );
