@@ -53,4 +53,28 @@ function init() {
     <input type="submit" value="Загрузить файл">
 </form>
 
+<?php if ($show_addresses === 1) : ?>
+    <a href="?show_addresses=0">Скрыть таблицу с адресами</a>
+    <br>
+    <?php
+        
+
+ echo '<table style="border-collapse: collapse" border="1">';
+ // Перебор строк
+ foreach($list as $row){
+   echo '<tr>';
+   // Перебор столбцов
+   foreach($row as $col){
+     echo '<td>'.$col.'</td>';
+ }
+ echo '</tr>';
+ }
+ echo '</table>';
+
+
+    ?>
+<?php else : ?>
+    <a href="?show_addresses=1">Показать таблицу с адресами</a>
+<?php endif; ?>
+
 <p class="adt">ВАЖНО! Столбец с адресами в загружаемой таблице должен быть назван: ADRTAM </p>

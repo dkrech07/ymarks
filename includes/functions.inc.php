@@ -124,9 +124,10 @@ function excel2mysql($worksheet, $connection, $table_name, $columns_name_line = 
 }
 
 function upload_file($connection) {
-    $file_name = $_FILES['uploadfile']['name'];
 
-    if (isset($file_name)) {
+
+    if ($_FILES['uploadfile']['name']) {
+        $file_name = $_FILES['uploadfile']['name'];
         $file_path = 'uploads/';
         $file_url = 'uploads/' . $file_name;
     
@@ -139,5 +140,6 @@ function upload_file($connection) {
         foreach ($PHPExcel_file->getWorksheetIterator() as $index => $worksheet) {
             echo excel2mysql($worksheet, $connection, "excel2mysql" . ($index != 0 ? $index : ""), 1);
         }
+        return $PHPExcel_file;
     }
 }
