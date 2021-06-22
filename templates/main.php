@@ -12,9 +12,9 @@ function init() {
         center: [55.753994, 37.622093],
         zoom: 3
     });
-
+var customsCoords = [];
     <?php foreach ($list as $row): ?>
-
+    
     // Поиск координат переданного адреса;
     ymaps.geocode('<?php echo $row['ADRTAM']; ?>', {
         /**
@@ -40,10 +40,12 @@ function init() {
             firstGeoObject.properties.set('iconCaption', '<?php echo $row['CODE'] . ' ' . $row['NAMT']; ?>');
 
             // Добавляем первый найденный геообъект на карту.
-            myMap.geoObjects.add(firstGeoObject);
+            myMap.geoObjects.add(firstGeoObject);  
+            customsCoords.push(coords);  
         });
-
+        
     <?php endforeach; ?>
+    console.log(customsCoords);
 }
 </script>
 
