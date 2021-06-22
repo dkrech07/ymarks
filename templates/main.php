@@ -37,7 +37,7 @@ function init() {
 
             firstGeoObject.options.set('preset', 'islands#darkBlueDotIconWithCaption');
             // Получаем строку с адресом и выводим в иконке геообъекта.
-            firstGeoObject.properties.set('iconCaption', firstGeoObject.getAddressLine());
+            firstGeoObject.properties.set('iconCaption', '<?php echo $row['CODE'] . ' ' . $row['NAMT']; ?>');
 
             // Добавляем первый найденный геообъект на карту.
             myMap.geoObjects.add(firstGeoObject);
