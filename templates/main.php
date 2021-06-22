@@ -23,14 +23,19 @@ function init() {
 
     <?php foreach ($list as $row): ?>
        
-            myGeoObjects.add(new ymaps.Placemark([<?php echo $row['COORDS']; ?>])); // Сюда нужно сохранить координаты из базы;
+            myGeoObjects.add(new ymaps.Placemark([<?php echo $row['COORDS']; ?>], {
+            balloonContent: <?php echo $row['CODE'] ?>,
+            // iconCaption: 'текст'
+        }, {
+            preset: 'islands#greenDotIconWithCaption'
+        }))
 
     <?php endforeach; ?>
  
     myMap.geoObjects.add(myGeoObjects);
     
     // Сделаем у карты автомасштаб, чтобы были видны все метки;
-    myMap.setBounds(myCollection.getBounds(),{checkZoomRange:true, zoomMargin:9});
+    // myMap.setBounds(myCollection.getBounds(),{checkZoomRange:true, zoomMargin:9});
 }
 </script>
 
