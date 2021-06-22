@@ -1,7 +1,7 @@
 <div id="map" style="width: 100%; height:500px"></div>
 
 <link rel="stylesheet" href="css/style.css">
-<script src="https://api-maps.yandex.ru/2.1/?apikey=613134a3-0b21-4574-9499-1a61e9868d74&lang=ru_RU" type="text/javascript"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=30d94c2f-12ad-42af-99cc-ca403606687c&lang=ru_RU" type="text/javascript"></script>
 <script src="direct_geocode.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -22,7 +22,9 @@ function init() {
     });
 
     <?php foreach ($list as $row): ?>
-        myGeoObjects.add(new ymaps.Placemark([13.38, 52.51])); // Сюда нужно сохранить координаты из базы;
+       
+            myGeoObjects.add(new ymaps.Placemark([<?php echo $row['COORDS']; ?>])); // Сюда нужно сохранить координаты из базы;
+
     <?php endforeach; ?>
  
     myMap.geoObjects.add(myGeoObjects);
