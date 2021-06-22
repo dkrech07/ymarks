@@ -6,14 +6,7 @@ $show_addresses = filter_input(INPUT_GET, 'show_addresses', FILTER_VALIDATE_INT)
 
 $excel = upload_file($connection);
 
-//$lists = [];
-//foreach($excel ->getWorksheetIterator() as $worksheet) {
-//    $lists[] = $worksheet->toArray();
-//   }
-
-mysqli_query($connection, "ALTER TABLE excel2mysql ADD COORDS VARCHAR(128)");
-
-mysqli_query($connection, "INSERT INTO excel2mysql SET COORDS = 'test' WHERE CODE = '10000000'");
+mysqli_query($connection, "ALTER TABLE excel2mysql ADD COORDS VARCHAR(128) NOT NULL");
 
 $list = select_query($connection, "SELECT * FROM excel2mysql");
 
@@ -23,13 +16,10 @@ foreach ($list as $custom) {
 
     // Получает координаты по адресу таможенного поста;
     $custom_coords = get_coords($address);
+    $custom_code = $custom['CODE'];
 
-    // // $sql = "INSERT INTO excel2mysql ('COORDS') VALUES ($custom_coords) WHERE 'CODE' = " . $custom['CODE'];
-    // mysqli_query($connection, "INSERT INTO excel2mysql (COORDS) VALUES ('test') WHERE CODE = 10000010");
+    mysqli_query($connection, "UPDATE excel2mysql SET COORDS = '$custom_coords' WHERE CODE = '$custom_code'");
 
-    
-
-    print($custom_coords);
 }
 
 $page_content = include_template('main.php', [
