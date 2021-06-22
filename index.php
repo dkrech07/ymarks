@@ -12,8 +12,8 @@ $list = select_query($connection, "SELECT * FROM excel2mysql");
 
 
 foreach ($list as $custom) {
-    $address = $custom['ADRTAM'];
-
+    $address = $custom['COORDS'];
+    print($address);
     // Получает координаты по адресу таможенного поста;
     $custom_coords = get_coords($address);
     $custom_code = $custom['CODE'];

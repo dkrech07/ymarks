@@ -130,14 +130,15 @@ function get_coords($address) {
         'geocode' => $address, // адрес
         'format'  => 'json',                          // формат ответа
         'results' => 1,                               // количество выводимых результатов
-        'apikey'     => '4f3c09de-626b-498a-bc29-cff656b39532',                           // ваш api key
+        'apikey'     => '613134a3-0b21-4574-9499-1a61e9868d74',                           // ваш api key
     );
 
     $response = json_decode(file_get_contents('http://geocode-maps.yandex.ru/1.x/?' . http_build_query($params, '', '&')));
 
     if ($response->response->GeoObjectCollection->metaDataProperty->GeocoderResponseMetaData->found > 0)
     {
-        return $response->response->GeoObjectCollection->featureMember[0]->GeoObject->Point->pos;
+         $coords = $response->response->GeoObjectCollection->featureMember[0]->GeoObject->Point->pos;
+         return '[' . str_replace(' ', ', ', $coords) . ']';
     }
     else
     {
