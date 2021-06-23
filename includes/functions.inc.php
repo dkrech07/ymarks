@@ -123,30 +123,6 @@ function excel2mysql($worksheet, $connection, $table_name, $columns_name_line = 
     return true;
 }
 
-// Сохраняю координаты в базу
-
-function get_coords($address) {
-    $params = array(
-        'geocode' => $address, // адрес
-        'format'  => 'json',                          // формат ответа
-        'results' => 1,                               // количество выводимых результатов
-        'apikey'     => '30d94c2f-12ad-42af-99cc-ca403606687c',                           // ваш api key
-    );
-
-    $response = json_decode(file_get_contents('http://geocode-maps.yandex.ru/1.x/?' . http_build_query($params, '', '&')));
-
-    if ($response->response->GeoObjectCollection->metaDataProperty->GeocoderResponseMetaData->found > 0)
-    {
-         $coords = $response->response->GeoObjectCollection->featureMember[0]->GeoObject->Point->pos;
-         return str_replace(' ', ', ', $coords);
-    }
-    else
-    {
-        return null;
-    }
-}
-
-
 function upload_file($connection) {
 
     if ($_FILES['uploadfile']['name']) {
