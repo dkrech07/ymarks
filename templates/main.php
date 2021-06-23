@@ -22,6 +22,7 @@ function init() {
     });
 
     <?php foreach ($list as $row): ?>
+<<<<<<< HEAD
 
     // Поиск координат переданного адреса;
     ymaps.geocode('<?php echo $row['ADRTAM']; ?>', {
@@ -61,6 +62,15 @@ function init() {
 
 
 
+=======
+       
+            myGeoObjects.add(new ymaps.Placemark([<?php echo $row['COORDS']; ?>], {
+            balloonContent: <?php echo $row['CODE'] ?>,
+            // iconCaption: 'текст'
+        }, {
+            preset: 'islands#greenDotIconWithCaption'
+        }))
+>>>>>>> d14911332c417edc63ab207321ffff89aa5c54b0
 
     <?php endforeach; ?>
  

@@ -4,7 +4,7 @@ require_once "includes/functions.inc.php";
 
 $show_addresses = filter_input(INPUT_GET, 'show_addresses', FILTER_VALIDATE_INT);
 
-$excel = upload_file($connection);
+// $excel = upload_file($connection);
 
 $list = select_query($connection, "SELECT * FROM excel2mysql");
 
