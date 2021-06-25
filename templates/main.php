@@ -1,28 +1,19 @@
 <div id="map" style="width: 100%; height:500px"></div>
 
 <link rel="stylesheet" href="css/style.css">
-<script src="https://api-maps.yandex.ru/2.1/?apikey=81bba49d-e474-4b34-88c8-83eb62970f6c&lang=ru_RU" type="text/javascript"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=4f3c09de-626b-498a-bc29-cff656b39532&lang=ru_RU" type="text/javascript"></script>
 <script src="direct_geocode.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 ymaps.ready(init);
 
 function init() {
-    var myMap = new ymaps.Map("map", {
-        center: [55.76, 37.64],
-        zoom: 2
-    }, {
-        searchControlProvider: 'yandex#search'
-    });
- 
-    var myGeoObjects = new ymaps.GeoObjectCollection({}, {
-        preset: "islands#redCircleIcon",
-        strokeWidth: 4,
-        geodesic: true
+    var myMap = new ymaps.Map('map', {
+        center: [55.753994, 37.622093],
+        zoom: 3
     });
 
     <?php foreach ($list as $row): ?>
-<<<<<<< HEAD
 
     // Поиск координат переданного адреса;
     ymaps.geocode('<?php echo $row['ADRTAM']; ?>', {
@@ -50,34 +41,9 @@ function init() {
 
             // Добавляем первый найденный геообъект на карту.
             myMap.geoObjects.add(firstGeoObject);
-            
-            // myGeoObjects.add(new ymaps.Placemark(firstGeoObject));
         });
 
-
-
-
-
-
-
-
-
-=======
-       
-            myGeoObjects.add(new ymaps.Placemark([<?php echo $row['COORDS']; ?>], {
-            balloonContent: <?php echo $row['CODE'] ?>,
-            // iconCaption: 'текст'
-        }, {
-            preset: 'islands#greenDotIconWithCaption'
-        }))
->>>>>>> d14911332c417edc63ab207321ffff89aa5c54b0
-
     <?php endforeach; ?>
- 
-    // myMap.geoObjects.add(myGeoObjects);
-    
-    // Сделаем у карты автомасштаб, чтобы были видны все метки;
-    // myMap.setBounds(myCollection.getBounds(),{checkZoomRange:true, zoomMargin:9});
 }
 </script>
 
@@ -111,7 +77,4 @@ function init() {
     <a href="?show_addresses=1">Показать таблицу с адресами</a>
 <?php endif; ?>
 
-<p class="adt">ВАЖНО!</p>
-
-<p class="adt">Столбец с адресами в загружаемой таблице должен быть назван: ADRTAM </p>
-<p class="adt">Столбец с кодами таможенным постов должен быть назван: CODE </p>
+<p class="adt">ВАЖНО! Столбец с адресами в загружаемой таблице должен быть назван: ADRTAM </p>

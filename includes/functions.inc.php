@@ -125,6 +125,7 @@ function excel2mysql($worksheet, $connection, $table_name, $columns_name_line = 
 
 function upload_file($connection) {
 
+
     if ($_FILES['uploadfile']['name']) {
         $file_name = $_FILES['uploadfile']['name'];
         $file_path = 'uploads/';
