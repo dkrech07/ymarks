@@ -55,7 +55,7 @@ function init() {
    // Перебор столбцов
    foreach($row as $col){
      if (is_array($col)) {
-        echo '<td>'.$col[0] . ',' . $con[1] .'</td>';
+        echo '<td>'.$col[0] . ', ' . $col[1] .'</td>';
      } else {
         echo '<td>'.$col.'</td>';
      }
