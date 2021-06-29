@@ -1,73 +1,67 @@
-<div id="map" style="width: 100%; height:500px"></div>
+<!DOCTYPE html>
+<html lang="ru">
 
-<link rel="stylesheet" href="css/style.css">
-<script src="https://api-maps.yandex.ru/2.1/?apikey=4f3c09de-626b-498a-bc29-cff656b39532&lang=ru_RU" type="text/javascript"></script>
-<script src="direct_geocode.js" type="text/javascript"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=4f3c09de-626b-498a-bc29-cff656b39532&lang=ru_RU" type="text/javascript"></script>
+    <script src="direct_geocode.js" type="text/javascript"></script>
+    <title>Where is my custom</title>
+</head>
 
-<script type="text/javascript">
-ymaps.ready(init);
-function init() {
-    var myMap = new ymaps.Map("map", {
-        center: [<?php echo $list[0]['point']; ?>],
-        zoom: 16
-    }, {
-        searchControlProvider: 'yandex#search'
-    });
- 
-    var myCollection = new ymaps.GeoObjectCollection(); 
+<body class="wrapper">
+    <header class="main-section main-header">
+        <b class="index-logo">Where is my customs?</b>
+        <!-- <nav class="main-navigation">
+            <ul class="site-navigation">
+                <li><a href="#">Информация</a></li>
+                <li><a href="#">Фото и видео</a></li>
+                <li><a href="#">Карта Штата</a></li>
+                <li><a href="catalog.html">Гостиницы</a></li>
+            </ul>
+        </nav> -->
+    </header>
 
-    <?php foreach ($list as $row): ?>
-    var myPlacemark = new ymaps.Placemark([
-        <?php echo $row['COORDS'][0] . ' ,' . $row['COORDS'][1] ; ?>
-    ], {
-        balloonContent: '<?php echo $row['CODE'] . ' ' . $row['NAMT'] . ' ' . $row['ADRTAM']; ?>',
-        iconCaption: '<?php echo $row['CODE'] . ' ' . $row['NAMT']; ?>'
-    }, {
-        preset: 'islands#icon',
-        iconColor: '#0000ff'
-    });
-    myCollection.add(myPlacemark);
-    <?php endforeach; ?>
- 
-    myMap.geoObjects.add(myCollection);
-    
-    // Сделаем у карты автомасштаб чтобы были видны все метки.
-    myMap.setBounds(myCollection.getBounds(),{checkZoomRange:true, zoomMargin:9});
-}
-</script>
+    <div id="map" style="width: 95%; height:550px"></div>
 
-<form class="upload-form" method="post" action="index.php" enctype="multipart/form-data">
-    <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
-    <input type="file" name="uploadfile">
-    <input type="submit" value="Загрузить файл">
-</form>
+    <script type="text/javascript">
+        ymaps.ready(init);
 
-<?php if ($show_addresses == 1) : ?>
-    <a href="?show_addresses=0">Скрыть таблицу с адресами</a>
-    <br>
-    <?php
-        
+        function init() {
+            var myMap = new ymaps.Map("map", {
+                center: [55.76, 37.64],
+                zoom: 10
+            }, {
+                searchControlProvider: 'yandex#search'
+            });
 
- echo '<table style="border-collapse: collapse" border="1">';
- // Перебор строк
- foreach($list as $row){
-   echo "<tr class='customs-table'>";
-   // Перебор столбцов
-   foreach($row as $col){
-     if (is_array($col)) {
-        echo '<td>'.$col[0] . ', ' . $col[1] .'</td>';
-     } else {
-        echo '<td>'.$col.'</td>';
-     }
- }
- echo "</tr>";
- }
- echo '</table>';
+            var myCollection = new ymaps.GeoObjectCollection();
 
+            <?php foreach ($list as $row) : ?>
+                var myPlacemark = new ymaps.Placemark([
+                    <?php echo $row['COORDS'][0] . ' ,' . $row['COORDS'][1]; ?>
+                ], {
+                    balloonContent: '<?php echo $row['CODE'] . ' ' . $row['NAMT'] . ' ' . $row['ADRTAM']; ?>',
+                    iconCaption: '<?php echo $row['CODE'] . ' ' . $row['NAMT']; ?>'
+                }, {
+                    preset: 'islands#icon',
+                    iconColor: '#0000ff'
+                });
+                myCollection.add(myPlacemark);
+            <?php endforeach; ?>
 
-    ?>
-<?php else : ?>
-    <a href="?show_addresses=1">Показать таблицу с адресами</a>
-<?php endif; ?>
+            myMap.geoObjects.add(myCollection);
 
-<!-- <p class="adt">ВАЖНО! Столбец с адресами в загружаемой таблице должен быть назван: ADRTAM </p> -->
+            // Сделаем у карты автомасштаб чтобы были видны все метки.
+            myMap.setBounds(myCollection.getBounds(), {
+                checkZoomRange: true,
+                zoomMargin: 9
+            });
+        }
+    </script>
+
+</body>
+
+</html>

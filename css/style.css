@@ -1,3 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+
+.wrapper {
+    margin: 0 auto;
+}
+
+.main-header {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 18px;
+    color: #00bbd8;
+    width: 95%;    
+    margin: 0 auto;
+    padding: 2px;
+}
+
+#map {
+    margin: 0 auto;
+    padding: 10px;
+    border-top: 2px solid #00bbd8;
+    border-bottom: 2px solid #00bbd8;
+    width: 95%;    
+}
+
 .upload-form {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -14,3 +37,4 @@ table {
     width: 95%;
     margin: 0 auto;
 }
+
