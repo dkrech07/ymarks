@@ -1,17 +1,18 @@
 <?php
-require_once "includes/db_connect.inc.php";
+//require_once "includes/db_connect.inc.php";
+require_once "includes/all_customs.php";
 require_once "includes/functions.inc.php";
 
 $show_addresses = filter_input(INPUT_GET, 'show_addresses', FILTER_VALIDATE_INT);
 
-$excel = upload_file($connection);
+//$excel = upload_file($connection);
 
 //$lists = [];
 //foreach($excel ->getWorksheetIterator() as $worksheet) {
 //    $lists[] = $worksheet->toArray();
 //   }
 
-$list = select_query($connection, "SELECT * FROM excel2mysql");
+//$list = select_query($connection, "SELECT * FROM excel2mysql");
 
 $page_content = include_template('main.php', [
     'list' => $list,

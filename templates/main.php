@@ -6,44 +6,33 @@
 
 <script type="text/javascript">
 ymaps.ready(init);
-
 function init() {
-    var myMap = new ymaps.Map('map', {
-        center: [55.753994, 37.622093],
-        zoom: 3
+    var myMap = new ymaps.Map("map", {
+        center: [<?php echo $list[0]['point']; ?>],
+        zoom: 16
+    }, {
+        searchControlProvider: 'yandex#search'
     });
+ 
+    var myCollection = new ymaps.GeoObjectCollection(); 
 
     <?php foreach ($list as $row): ?>
-
-    // Поиск координат переданного адреса;
-    ymaps.geocode('<?php echo $row['ADRTAM']; ?>', {
-        /**
-         * Опции запроса
-         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/geocode.xml
-         */
-        // Сортировка результатов от центра окна карты.
-        // boundedBy: myMap.getBounds(),
-        // strictBounds: true,
-        // Вместе с опцией boundedBy будет искать строго внутри области, указанной в boundedBy.
-        // Если нужен только один результат, экономим трафик пользователей.
-        results: 1
-    }).then(function (res) {
-            // Выбираем первый результат геокодирования.
-            var firstGeoObject = res.geoObjects.get(0),
-                // Координаты геообъекта.
-                coords = firstGeoObject.geometry.getCoordinates(),
-                // Область видимости геообъекта.
-                bounds = firstGeoObject.properties.get('boundedBy');
-
-            firstGeoObject.options.set('preset', 'islands#darkBlueDotIconWithCaption');
-            // Получаем строку с адресом и выводим в иконке геообъекта.
-            firstGeoObject.properties.set('iconCaption', '<?php echo $row['CODE'] . ' ' . $row['NAMT']; ?>');
-
-            // Добавляем первый найденный геообъект на карту.
-            myMap.geoObjects.add(firstGeoObject);
-        });
-
+    var myPlacemark = new ymaps.Placemark([
+        <?php echo $row['COORDS'][0] . ' ,' . $row['COORDS'][1] ; ?>
+    ], {
+        balloonContent: '<?php echo $row['CODE'] . ' ' . $row['NAMT'] . ' ' . $row['ADRTAM']; ?>',
+        iconCaption: '<?php echo $row['CODE'] . ' ' . $row['NAMT']; ?>'
+    }, {
+        preset: 'islands#icon',
+        iconColor: '#0000ff'
+    });
+    myCollection.add(myPlacemark);
     <?php endforeach; ?>
+ 
+    myMap.geoObjects.add(myCollection);
+    
+    // Сделаем у карты автомасштаб чтобы были видны все метки.
+    myMap.setBounds(myCollection.getBounds(),{checkZoomRange:true, zoomMargin:9});
 }
 </script>
 
@@ -53,7 +42,7 @@ function init() {
     <input type="submit" value="Загрузить файл">
 </form>
 
-<?php if ($show_addresses === 1) : ?>
+<?php if ($show_addresses == 1) : ?>
     <a href="?show_addresses=0">Скрыть таблицу с адресами</a>
     <br>
     <?php
@@ -62,12 +51,16 @@ function init() {
  echo '<table style="border-collapse: collapse" border="1">';
  // Перебор строк
  foreach($list as $row){
-   echo '<tr>';
+   echo "<tr class='customs-table'>";
    // Перебор столбцов
    foreach($row as $col){
-     echo '<td>'.$col.'</td>';
+     if (is_array($col)) {
+        echo '<td>'.$col[0] . ',' . $con[1] .'</td>';
+     } else {
+        echo '<td>'.$col.'</td>';
+     }
  }
- echo '</tr>';
+ echo "</tr>";
  }
  echo '</table>';
 
@@ -77,4 +70,4 @@ function init() {
     <a href="?show_addresses=1">Показать таблицу с адресами</a>
 <?php endif; ?>
 
-<p class="adt">ВАЖНО! Столбец с адресами в загружаемой таблице должен быть назван: ADRTAM </p>
+<!-- <p class="adt">ВАЖНО! Столбец с адресами в загружаемой таблице должен быть назван: ADRTAM </p> -->

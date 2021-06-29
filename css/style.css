@@ -8,3 +8,9 @@
     font-size: 18px;
     font-weight: bold;
 }
+
+table {
+    font-size: 12px;
+    width: 95%;
+    margin: 0 auto;
+}

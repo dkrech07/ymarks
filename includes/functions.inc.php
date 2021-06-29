@@ -1,6 +1,6 @@
 <?php
 // Подключаем библиотеку
-require_once "PHPExcel.php";
+//require_once "PHPExcel.php";
 
 /**
  * Подключает шаблон, передает туда данные и возвращает итоговый HTML контент
