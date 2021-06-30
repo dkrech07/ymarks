@@ -122,6 +122,28 @@
                         }
                         getTable();
                     }
+
+                    if (evt.target.id === '2') {
+                        console.log(obj);
+                        objHead = [];
+                        obj.forEach((row)=>{
+                            var code = row['CODE'];
+
+                            if (code.slice(5) === '000') {
+                                objHead.push(row);
+                            }
+                            console.log(objHead);
+                            obj = objHead;
+                        });
+
+                        if (tableFlag === 1) {
+                            var footer = document.querySelector('footer');
+                            tableFlag = 0;
+                            removeChild(footer);
+                            return;
+                        }
+                        getTable();
+                    }
                         
                 });
             });
