@@ -1,4 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+@font-face {
+    font-family: Caveat Brush;
+    src: url(../fonts/CaveatBrush-Regular.ttf);
+   }
+
+@font-face {
+    font-family: PTSans;
+    src: url(../fonts/PTSans-Regular.ttf);
+   }
 
 .wrapper {
     margin: 0 auto;
@@ -38,3 +46,30 @@ table {
     margin: 0 auto;
 }
 
+ul {
+
+    margin: 0 auto;
+    margin-top: -2px;
+    padding: 30px 0;
+    list-style-type: none;
+    border: 1px solid #00bbd8;
+    background-color: #00bbd8;
+    text-align: center;
+}
+
+ul li {
+    display: inline-block;
+    margin: 0;
+    margin-right: 30px;
+    padding: 5px 10px;
+    border: 1px solid #ffffff;
+    font-family: 'PTSans';
+    font-size: 18px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+ul li:hover {
+    background-color: #ffffff;
+    color: #00bbd8;
+}

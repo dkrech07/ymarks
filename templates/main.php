@@ -14,17 +14,22 @@
 <body class="wrapper">
     <header class="main-section main-header">
         <b class="index-logo">Where is my customs?</b>
-        <!-- <nav class="main-navigation">
-            <ul class="site-navigation">
-                <li><a href="#">Информация</a></li>
-                <li><a href="#">Фото и видео</a></li>
-                <li><a href="#">Карта Штата</a></li>
-                <li><a href="catalog.html">Гостиницы</a></li>
-            </ul>
-        </nav> -->
+
     </header>
 
-    <div id="map" style="width: 95%; height:550px"></div>
+    <main>
+        <div id="map" style="width: 95%; height:550px"></div>
+        <ul>
+            <li id='1' class='table-btn'>Показать таблицу</li>
+
+            <li id='2' class='table-btn'>Головные таможни</li>
+            <li id='3' class='table-btn'>Посты акцизной таможни</li>
+            <li id ="4" class='table-btn'>Прочие посты</li>
+        </ul>
+    </main>
+
+    <footer id="container" >
+    </footer>
 
     <script type="text/javascript">
         ymaps.ready(init);
@@ -39,7 +44,7 @@
 
             var myCollection = new ymaps.GeoObjectCollection();
 
-            <?php foreach ($list as $row) : ?>
+            <?php foreach ($list as $row): ?>
                 var myPlacemark = new ymaps.Placemark([
                     <?php echo $row['COORDS'][0] . ' ,' . $row['COORDS'][1]; ?>
                 ], {
@@ -50,7 +55,7 @@
                     iconColor: '#0000ff'
                 });
                 myCollection.add(myPlacemark);
-            <?php endforeach; ?>
+            <?php endforeach;?>
 
             myMap.geoObjects.add(myCollection);
 
@@ -60,6 +65,44 @@
                 zoomMargin: 9
             });
         }
+
+        var obj = <?php echo json_encode($list); ?>
+
+        const getTable = () => {
+            var html = '<table border="1" cellpadding="3">';
+
+            for(var i = 0; i < obj.length; i++)
+                {
+                    html += '<tr>';
+                    html += '<td>' + obj[i]['CODE'] + '</td>';
+                    html += '<td>' + obj[i]['ADRTAM'] + '</td>';
+                    html += '</tr>';
+                }
+
+                window.onload = function()
+                {
+                    document.getElementById('container').innerHTML = html + '</table>';
+                };
+                console.log(obj);
+        }
+
+        const buttons = document.querySelectorAll('li');
+
+        const getCustoms = (buttons) => {
+            buttons.forEach(element => {
+                element.addEventListener('click', (evt) => {
+                    if (evt.target.id === '1') {
+     
+             
+
+                    getTable();
+                    }
+                });
+            });
+        };
+
+        getCustoms(buttons);
+
     </script>
 
 </body>
