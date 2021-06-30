@@ -40,12 +40,6 @@
     font-weight: bold;
 }
 
-table {
-    font-size: 12px;
-    width: 95%;
-    margin: 0 auto;
-}
-
 ul {
 
     margin: 0 auto;
@@ -75,7 +69,27 @@ ul li:hover {
     color: #00bbd8;
 }
 
-.customs-table {
+.customs-table{
     border-collapse: collapse;
-    border-color: #00bbd8
+    font-size: 12px;
+    margin: 0 auto;
+    font-family: 'PTSans', cursive;
+    width: 95%;
+
+    /* margin: 15px;
+    border-collapse: collapse;
+    border: 2px solid #00bbd8;
+
+    
+    margin: 0 auto; */ */
+}
+
+.customs-table td {
+    text-align: center;
+    border: 2px solid #00bbd8;
+    padding: 10px;
+}
+
+tr:nth-child(even) { 
+    background-color: #00bbd8;
 }

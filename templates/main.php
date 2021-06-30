@@ -48,8 +48,7 @@
 
             obj.forEach((row) => {
                 var coords = row['COORDS'][0] + ',' + row['COORDS'][1];
-                console.log(typeof(coords));
-                console.log(coords.split(","));
+  
                 var myPlacemark = new ymaps.Placemark(coords.split(","), {
                     balloonContent: "'" + row['CODE'] + ' ' + row['NAMT'] + ' ' + row['ADRTAM'] + "'",
                     iconCaption: "'" + row['CODE'] + ' ' + row['NAMT'] + "'"
@@ -80,13 +79,26 @@
         }
 
         var getTable = () => {
-            var html = "<table class='table'>";
-
+            var html = "<table class='customs-table'>";
+                
+                    html += '<td>' + 'CODE' + '</td>';
+                    html += '<td>' + 'NAMT' + '</td>';
+                    html += '<td>' + 'NAME_ALL' + '</td>';
+                    html += '<td>' + 'ADRTAM' + '</td>';
+                    html += '<td>' + 'TELEFON' + '</td>';
+                    html += '<td>' + 'FAX' + '</td>';
+                    html += '<td>' + 'EMAIL' + '</td>';
+         
             for(var i = 0; i < obj.length; i++)
                 {
                     html += '<tr>';
                     html += '<td>' + obj[i]['CODE'] + '</td>';
+                    html += '<td>' + obj[i]['NAMT'] + '</td>';
+                    html += '<td>' + obj[i]['NAME_ALL'] + '</td>';
                     html += '<td>' + obj[i]['ADRTAM'] + '</td>';
+                    html += '<td>' + obj[i]['TELEFON'] + '</td>';
+                    html += '<td>' + obj[i]['FAX'] + '</td>';
+                    html += '<td>' + obj[i]['EMAIL'] + '</td>';
                     html += '</tr>';
                 }
                 document.getElementById('footer').innerHTML = html + '</table>';
