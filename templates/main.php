@@ -28,7 +28,7 @@
         </ul>
     </main>
 
-    <footer id="container" >
+    <footer id="footer" >
     </footer>
 
     <script type="text/javascript">
@@ -66,10 +66,19 @@
             });
         }
 
-        var obj = <?php echo json_encode($list); ?>
 
-        const getTable = () => {
-            var html = '<table border="1" cellpadding="3">';
+        var tableFlag = 0;
+
+        var obj = <?php echo json_encode($list, JSON_UNESCAPED_UNICODE); ?>
+
+        var removeChild = function(element) {
+            while (element.firstChild) {
+            element.removeChild(element.firstChild);
+            }
+        }
+
+        var getTable = () => {
+            var html = "<table class='table'>";
 
             for(var i = 0; i < obj.length; i++)
                 {
@@ -78,30 +87,34 @@
                     html += '<td>' + obj[i]['ADRTAM'] + '</td>';
                     html += '</tr>';
                 }
-
-                window.onload = function()
-                {
-                    document.getElementById('container').innerHTML = html + '</table>';
-                };
-                console.log(obj);
+                document.getElementById('footer').innerHTML = html + '</table>';
+                tableFlag = 1;
         }
 
-        const buttons = document.querySelectorAll('li');
 
-        const getCustoms = (buttons) => {
+        var table = document.createDocumentFragment();
+
+        var buttons = document.querySelectorAll('li');
+
+        var getCustoms = (buttons) => {
             buttons.forEach(element => {
                 element.addEventListener('click', (evt) => {
                     if (evt.target.id === '1') {
-     
-             
-
-                    getTable();
+                        if (tableFlag === 1) {
+                            var footer = document.querySelector('footer');
+                            tableFlag = 0;
+                            removeChild(footer);
+                            return;
+                        }
+                        getTable();
                     }
+                        
                 });
             });
         };
 
         getCustoms(buttons);
+
 
     </script>
 
