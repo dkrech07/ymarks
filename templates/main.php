@@ -32,6 +32,8 @@
     </footer>
 
     <script type="text/javascript">
+        var obj = <?php echo json_encode($list, JSON_UNESCAPED_UNICODE); ?>
+
         ymaps.ready(init);
 
         function init() {
@@ -44,18 +46,19 @@
 
             var myCollection = new ymaps.GeoObjectCollection();
 
-            <?php foreach ($list as $row): ?>
-                var myPlacemark = new ymaps.Placemark([
-                    <?php echo $row['COORDS'][0] . ' ,' . $row['COORDS'][1]; ?>
-                ], {
-                    balloonContent: '<?php echo $row['CODE'] . ' ' . $row['NAMT'] . ' ' . $row['ADRTAM']; ?>',
-                    iconCaption: '<?php echo $row['CODE'] . ' ' . $row['NAMT']; ?>'
+            obj.forEach((row) => {
+                var coords = row['COORDS'][0] + ',' + row['COORDS'][1];
+                console.log(typeof(coords));
+                console.log(coords.split(","));
+                var myPlacemark = new ymaps.Placemark(coords.split(","), {
+                    balloonContent: "'" + row['CODE'] + ' ' + row['NAMT'] + ' ' + row['ADRTAM'] + "'",
+                    iconCaption: "'" + row['CODE'] + ' ' + row['NAMT'] + "'"
                 }, {
                     preset: 'islands#icon',
                     iconColor: '#0000ff'
                 });
                 myCollection.add(myPlacemark);
-            <?php endforeach;?>
+            });
 
             myMap.geoObjects.add(myCollection);
 
@@ -69,7 +72,6 @@
 
         var tableFlag = 0;
 
-        var obj = <?php echo json_encode($list, JSON_UNESCAPED_UNICODE); ?>
 
         var removeChild = function(element) {
             while (element.firstChild) {
