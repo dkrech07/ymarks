@@ -19,7 +19,7 @@
     <main>
         <div id="map" style="width: 95%; height:550px"></div>
         <ul>
-            <li id='1' class='table-btn'>Показать таблицу</li>
+            <li id='1' class='table-btn'>Показать все посты</li>
             <li id='2' class='table-btn'>Головные таможни</li>
             <li id='3' class='table-btn'>Посты акцизной таможни</li>
             <li id='4' class='table-btn'>Прочие посты</li>

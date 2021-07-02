@@ -1,5 +1,8 @@
-var tableFlag = 0;
 var objClone = obj.slice(0);
+var buttons = document.querySelectorAll('li');
+var buttonStyleBlue = 'background: #00bbd8; color: #ffffff;';
+var buttonStyleWhite = 'background: #ffffff; color: #00bbd8;';
+var customsTableFlag = 0;
 
 var removeChild = function(element) {
     while (element.firstChild) {
@@ -30,42 +33,40 @@ var getTable = () => {
         html += '</tr>';
     }
     document.getElementById('footer').innerHTML = html + '</table>';
-    tableFlag = 1;
 }
 
+function checkButtons() {
 
-var table = document.createDocumentFragment();
-
-var buttons = document.querySelectorAll('li');
+}
 
 var getCustoms = (buttons) => {
     var map = document.getElementById('map');
 
     buttons.forEach(element => {
         element.addEventListener('click', (evt) => {
+
+            buttons.forEach(element => {
+                element.style = buttonStyleBlue;
+            });
+
+            if (customsTableFlag === 1) {
+                customsTableFlag = 0;
+                evt.target.style = buttonStyleBlue;
+                var footer = document.querySelector('footer');
+                removeChild(footer);
+                return;
+            }
+
             // Если target.id === '1', вывести все таможенные посты;
             if (evt.target.id === '1') {
-                if (tableFlag === 1) {
-                    var footer = document.querySelector('footer');
-                    tableFlag = 0;
-                    removeChild(footer);
-                    return;
-                }
+                objClone = obj;
+                evt.target.style = buttonStyleWhite;
+                customsTableFlag = 1;
                 getTable();
             }
 
-            // Если target.id === '1', вывести головные таможни;
+            // Если target.id === '1', вывести все таможенные посты;
             if (evt.target.id === '2') {
-                if (tableFlag == 2) {
-                    console.log(tableFlag);
-                    objClone = obj;
-                    removeChild(map);
-                    drawMap(objClone);
-                    getTable();
-                    return;
-                }
-
-                tableFlag = 2;
 
                 objHead = [];
                 objClone.forEach((row) => {
@@ -76,16 +77,9 @@ var getCustoms = (buttons) => {
                     objClone = objHead;
                 });
 
-                removeChild(map);
-                drawMap(objClone);
+                evt.target.style = buttonStyleWhite;
+                customsTableFlag = 1;
                 getTable();
-                // if (tableFlag === 1) {
-                //     var footer = document.querySelector('footer');
-                //     tableFlag = 0;
-                //     removeChild(footer);
-                //     return;
-                // }
-                // getTable();
             }
 
         });
@@ -93,3 +87,67 @@ var getCustoms = (buttons) => {
 };
 
 getCustoms(buttons);
+
+// var getCustoms = (buttons) => {
+//     var map = document.getElementById('map');
+//
+//     buttons.forEach(element => {
+//         element.addEventListener('click', (evt) => {
+//             // Если target.id === '1', вывести все таможенные посты;
+//             if (evt.target.id === '1') {
+//                 if (allCustomsFlag === 1) {
+//                     var footer = document.querySelector('footer');
+//                     allCustomsFlag = 0;
+//                     removeChild(footer);
+//                     return;
+//                 }
+//                 getTable();
+//             }
+//
+//             // Если target.id === '1', вывести головные таможни;
+//             if (evt.target.id === '2') {
+//                 if (allCustomsFlag == 2) {
+//                     console.log(allCustomsFlag);
+//                     objClone = obj;
+//                     removeChild(map);
+//                     drawMap(objClone);
+//                     getTable();
+//                     return;
+//                 }
+//
+//                 allCustomsFlag = 2;
+//
+//                 objHead = [];
+//                 objClone.forEach((row) => {
+//                     var code = row['CODE'];
+//                     if (code.slice(5) === '000') {
+//                         objHead.push(row);
+//                     }
+//                     objClone = objHead;
+//                 });
+//
+//                 removeChild(map);
+//                 drawMap(objClone);
+//                 getTable();
+//                 // if (allCustomsFlag === 1) {
+//                 //     var footer = document.querySelector('footer');
+//                 //     allCustomsFlag = 0;
+//                 //     removeChild(footer);
+//                 //     return;
+//                 // }
+//                 // getTable();
+//             }
+//
+//         });
+//     });
+// };
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// // var allCustomsFlag = 0;
