@@ -60,6 +60,7 @@ var getCustoms = (buttons) => {
                 evt.target.style = buttonStyleWhite;
                 evt.target.classList.add('table-btn-active');
                 getTable();
+                drawMap(objClone);
             }
 
             // Если target.id === '1', вывести все таможенные посты;
@@ -77,6 +78,7 @@ var getCustoms = (buttons) => {
                 evt.target.style = buttonStyleWhite;
                 evt.target.classList.add('table-btn-active');
                 getTable();
+                drawMap(objClone);
             }
 
         });
