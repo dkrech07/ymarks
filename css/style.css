@@ -1,12 +1,12 @@
 @font-face {
     font-family: Caveat Brush;
     src: url(../fonts/CaveatBrush-Regular.ttf);
-   }
+}
 
 @font-face {
     font-family: PTSans;
     src: url(../fonts/PTSans-Regular.ttf);
-   }
+}
 
 .wrapper {
     margin: 0 auto;
@@ -16,7 +16,7 @@
     font-family: 'Caveat Brush', cursive;
     font-size: 18px;
     color: #00bbd8;
-    width: 95%;    
+    width: 95%;
     margin: 0 auto;
     padding: 2px;
 }
@@ -26,7 +26,7 @@
     padding: 10px;
     border-top: 2px solid #00bbd8;
     border-bottom: 2px solid #00bbd8;
-    width: 95%;    
+    width: 95%;
 }
 
 .upload-form {
@@ -41,7 +41,6 @@
 }
 
 ul {
-
     margin: 0 auto;
     margin-top: -2px;
     margin-bottom: 5px;
@@ -52,7 +51,9 @@ ul {
     text-align: center;
 }
 
-ul li {
+ul .table-btn {
+    position: relative;
+    z-index: 10;
     display: inline-block;
     margin: 0;
     margin-right: 30px;
@@ -64,24 +65,17 @@ ul li {
     cursor: pointer;
 }
 
-ul li:hover {
+ul .table-btn:hover {
     background-color: #ffffff;
     color: #00bbd8;
 }
 
-.customs-table{
+.customs-table {
     border-collapse: collapse;
     font-size: 12px;
     margin: 0 auto;
     font-family: 'PTSans', cursive;
     width: 95%;
-
-    /* margin: 15px;
-    border-collapse: collapse;
-    border: 2px solid #00bbd8;
-
-    
-    margin: 0 auto; */ */
 }
 
 .customs-table td {
@@ -90,6 +84,18 @@ ul li:hover {
     padding: 10px;
 }
 
-tr:nth-child(even) { 
+tr:nth-child(even) {
     background-color: #00bbd8;
+}
+
+.table-btn-active::after {
+    z-index: -5;
+    position: absolute;
+    content: "";
+    width: 45px;
+    height: 45px;
+    transform: rotate(135deg);
+    top: 32%;
+    left: 37%;
+    background-color: #ffffff;
 }

@@ -42,6 +42,7 @@ var getCustoms = (buttons) => {
     var map = document.getElementById('map');
     objClone = obj;
     buttons[0].style = buttonStyleWhite;
+    buttons[0].classList.add('table-btn-active');
     getTable();
 
     buttons.forEach(element => {
@@ -49,12 +50,15 @@ var getCustoms = (buttons) => {
 
             buttons.forEach(element => {
                 element.style = buttonStyleBlue;
+                element.classList.remove('table-btn-active');
+
             });
 
             // Если target.id === '1', вывести все таможенные посты;
             if (evt.target.id === '1') {
                 objClone = obj;
                 evt.target.style = buttonStyleWhite;
+                evt.target.classList.add('table-btn-active');
                 getTable();
             }
 
@@ -71,6 +75,7 @@ var getCustoms = (buttons) => {
                 });
 
                 evt.target.style = buttonStyleWhite;
+                evt.target.classList.add('table-btn-active');
                 getTable();
             }
 
