@@ -24,7 +24,7 @@
 
             <li id='2' class='table-btn'>Головные таможни</li>
             <li id='3' class='table-btn'>Посты акцизной таможни</li>
-            <li id ="4" class='table-btn'>Прочие посты</li>
+            <li id='4' class='table-btn'>Прочие посты</li>
         </ul>
     </main>
 
@@ -34,9 +34,11 @@
     <script type="text/javascript">
         var obj = <?php echo json_encode($list, JSON_UNESCAPED_UNICODE); ?>
 
-        ymaps.ready(init);
+  
 
-        function init() {
+        function drawMap(obj) {
+            ymaps.ready(init);
+            function init() {
             var myMap = new ymaps.Map("map", {
                 center: [55.76, 37.64],
                 zoom: 10
@@ -67,10 +69,11 @@
                 zoomMargin: 9
             });
         }
-
+        }
+        drawMap(obj);
 
         var tableFlag = 0;
-
+        var objClone = obj.slice(0);
 
         var removeChild = function(element) {
             while (element.firstChild) {
@@ -89,16 +92,16 @@
                     html += '<td>' + 'FAX' + '</td>';
                     html += '<td>' + 'EMAIL' + '</td>';
          
-            for(var i = 0; i < obj.length; i++)
+            for(var i = 0; i < objClone.length; i++)
                 {
                     html += '<tr>';
-                    html += '<td>' + obj[i]['CODE'] + '</td>';
-                    html += '<td>' + obj[i]['NAMT'] + '</td>';
-                    html += '<td>' + obj[i]['NAME_ALL'] + '</td>';
-                    html += '<td>' + obj[i]['ADRTAM'] + '</td>';
-                    html += '<td>' + obj[i]['TELEFON'] + '</td>';
-                    html += '<td>' + obj[i]['FAX'] + '</td>';
-                    html += '<td>' + obj[i]['EMAIL'] + '</td>';
+                    html += '<td>' + objClone[i]['CODE'] + '</td>';
+                    html += '<td>' + objClone[i]['NAMT'] + '</td>';
+                    html += '<td>' + objClone[i]['NAME_ALL'] + '</td>';
+                    html += '<td>' + objClone[i]['ADRTAM'] + '</td>';
+                    html += '<td>' + objClone[i]['TELEFON'] + '</td>';
+                    html += '<td>' + objClone[i]['FAX'] + '</td>';
+                    html += '<td>' + objClone[i]['EMAIL'] + '</td>';
                     html += '</tr>';
                 }
                 document.getElementById('footer').innerHTML = html + '</table>';
@@ -111,8 +114,11 @@
         var buttons = document.querySelectorAll('li');
 
         var getCustoms = (buttons) => {
+            var map = document.getElementById('map');
+
             buttons.forEach(element => {
                 element.addEventListener('click', (evt) => {
+                    // Если target.id === '1', вывести все таможенные посты;
                     if (evt.target.id === '1') {
                         if (tableFlag === 1) {
                             var footer = document.querySelector('footer');
@@ -123,26 +129,38 @@
                         getTable();
                     }
 
+                    // Если target.id === '1', вывести головные таможни;
                     if (evt.target.id === '2') {
-                        console.log(obj);
-                        objHead = [];
-                        obj.forEach((row)=>{
-                            var code = row['CODE'];
+                        if (tableFlag == 2) {
+                            console.log(tableFlag);
+                            objClone = obj;
+                            removeChild(map);
+                            drawMap(objClone);
+                            getTable();
+                            return;
+                        }
 
+                        tableFlag = 2;
+
+                        objHead = [];
+                        objClone.forEach((row)=>{
+                            var code = row['CODE'];
                             if (code.slice(5) === '000') {
                                 objHead.push(row);
                             }
-                            console.log(objHead);
-                            obj = objHead;
+                            objClone = objHead;
                         });
 
-                        if (tableFlag === 1) {
-                            var footer = document.querySelector('footer');
-                            tableFlag = 0;
-                            removeChild(footer);
-                            return;
-                        }
+                        removeChild(map);
+                        drawMap(objClone);
                         getTable();
+                        // if (tableFlag === 1) {
+                        //     var footer = document.querySelector('footer');
+                        //     tableFlag = 0;
+                        //     removeChild(footer);
+                        //     return;
+                        // }
+                        // getTable();
                     }
                         
                 });
