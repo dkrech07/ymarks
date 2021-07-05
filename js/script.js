@@ -34,10 +34,6 @@ var getTable = () => {
     document.getElementById('footer').innerHTML = html + '</table>';
 }
 
-function checkButtons() {
-
-}
-
 var getCustoms = (buttons) => {
     var map = document.getElementById('map');
     objClone = obj.slice(0);
