@@ -40,7 +40,7 @@ function checkButtons() {
 
 var getCustoms = (buttons) => {
     var map = document.getElementById('map');
-    objClone = obj;
+    objClone = obj.slice(0);
     buttons[0].style = buttonStyleWhite;
     buttons[0].classList.add('table-btn-active');
     getTable();
@@ -56,16 +56,17 @@ var getCustoms = (buttons) => {
 
             // Если target.id === '1', вывести все таможенные посты;
             if (evt.target.id === '1') {
-                objClone = obj;
+                objClone = obj.slice(0);
                 evt.target.style = buttonStyleWhite;
                 evt.target.classList.add('table-btn-active');
+                removeChild(map);
                 getTable();
                 drawMap(objClone);
             }
 
-            // Если target.id === '1', вывести все таможенные посты;
+            // Если target.id === '2', вывести головные таможни;
             if (evt.target.id === '2') {
-
+                objClone = obj.slice(0);
                 objHead = [];
                 objClone.forEach((row) => {
                     var code = row['CODE'];
@@ -77,6 +78,28 @@ var getCustoms = (buttons) => {
 
                 evt.target.style = buttonStyleWhite;
                 evt.target.classList.add('table-btn-active');
+                removeChild(map);
+                getTable();
+                drawMap(objClone);
+            }
+
+            // Если target.id === '3', вывести посты акцизной таможни;
+            if (evt.target.id === '3') {
+                objClone = obj.slice(0);
+                objHead = [];
+                objClone.forEach((row) => {
+                    var code = row['CODE'];
+                    console.log(code.slice(0, 5));
+
+                    if (code.slice(0, 5) === '10009') {
+                        objHead.push(row);
+                    }
+                    objClone = objHead;
+                });
+
+                evt.target.style = buttonStyleWhite;
+                evt.target.classList.add('table-btn-active');
+                removeChild(map);
                 getTable();
                 drawMap(objClone);
             }
