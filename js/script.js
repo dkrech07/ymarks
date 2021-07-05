@@ -89,9 +89,26 @@ var getCustoms = (buttons) => {
                 objHead = [];
                 objClone.forEach((row) => {
                     var code = row['CODE'];
-                    console.log(code.slice(0, 5));
-
                     if (code.slice(0, 5) === '10009') {
+                        objHead.push(row);
+                    }
+                    objClone = objHead;
+                });
+
+                evt.target.style = buttonStyleWhite;
+                evt.target.classList.add('table-btn-active');
+                removeChild(map);
+                getTable();
+                drawMap(objClone);
+            }
+
+            // Если target.id === '4', вывести прочие посты;
+            if (evt.target.id === '4') {
+                objClone = obj.slice(0);
+                objHead = [];
+                objClone.forEach((row) => {
+                    var code = row['CODE'];
+                    if (code.slice(0, 3) === '121' || code.slice(0, 3) === '122' || code.slice(0, 3) === '123' || code.slice(0, 3) === '124' || code.slice(0, 3) === '125') {
                         objHead.push(row);
                     }
                     objClone = objHead;
@@ -107,5 +124,5 @@ var getCustoms = (buttons) => {
         });
     });
 };
-
+// 121,122,123,124,125
 getCustoms(buttons);
