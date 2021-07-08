@@ -34,36 +34,55 @@ var getTable = (objFiltered) => {
     document.getElementById('footer').innerHTML = html + '</table>';
 }
 
-function getMainCustoms() {
-    objClone = obj.slice(0);
-    objFiltered = [];
 
-    objClone.forEach((row) => {
-        var code = row['CODE'];
-        if (code.slice(5) !== '000' && code.slice(0, 5) !== '10009' && code.slice(0, 3) !== '121' && code.slice(0, 3) !== '122' && code.slice(0, 3) !== '123' && code.slice(0, 3) !== '124' && code.slice(0, 3) !== '125') {
-            objFiltered.push(row);
-        }
-        objClone = objFiltered;
-    });
 
-    return objFiltered;
-}
+var customsTypes = [];
+objClone = obj.slice(0);
 
 var getCustoms = (customsType) => {
+    objFiltered = {
+        'main': [],
+        'head': [],
+    };
 
-    if (customsType === 'main') {
-        return getMainCustoms();
-    }
+    // objMain = [];
+    // objHead = [];
 
-    if (customsType === 'head') {
-        objClone.forEach((row) => {
-            var code = row['CODE'];
-            if (code.slice(5) === '000') {
-                objHead.push(row);
+    if (customsTypes.length > 0) {
+        for (var i = 0; i < customsTypes.length; i++) {
+            if (customsTypes[i] === customsType) {
+                objFiltered[customsTypes[i]] = '';
+                delete customsTypes[i];
             }
-            // objClone = objHead;
-        });
+        }
     }
+    customsTypes.push(customsType);
+
+    for (var customNumber = 0; customNumber < customsTypes.length; customNumber++) {
+        if (customsTypes[customNumber] === 'main') {
+            objClone.forEach((row) => {
+                var code = row['CODE'];
+                if (code.slice(5) !== '000' && code.slice(0, 5) !== '10009' && code.slice(0, 3) !== '121' && code.slice(0, 3) !== '122' && code.slice(0, 3) !== '123' && code.slice(0, 3) !== '124' && code.slice(0, 3) !== '125') {
+                    objFiltered['main'].push(row);
+                }
+            });
+        }
+
+        if (customsTypes[customNumber] === 'head') {
+            objClone.forEach((row) => {
+                var code = row['CODE'];
+                if (code.slice(5) === '000') {
+                    objFiltered['head'].push(row);
+                }
+            });
+        }
+    }
+
+
+
+
+
+
     //
     // if (customsType === 'excise') {
     //     objClone.forEach((row) => {
@@ -84,15 +103,15 @@ var getCustoms = (customsType) => {
     //         // objClone = objHead;
     //     });
     // }
-
-
+    console.log(objFiltered);
+    return objFiltered;
 };
 
 var map = document.getElementById('map');
 objClone = obj.slice(0);
 buttons[0].style = buttonStyleWhite;
 buttons[0].classList.add('table-btn-active');
-getTable(getCustoms('main'));
+// getTable();
 
 buttons.forEach(element => {
     element.addEventListener('click', (evt) => {
@@ -105,31 +124,22 @@ buttons.forEach(element => {
 
         // Если target.id === '1', вывести все таможенные посты;
         if (evt.target.id === '1') {
-            // objClone = obj.slice(0);
             evt.target.style = buttonStyleWhite;
             evt.target.classList.add('table-btn-active');
             removeChild(map);
-            drawMap(getCustoms('main'));
-            getTable(getCustoms('main'));
+            var mainCustoms = getCustoms('main');
+            drawMap(mainCustoms);
+            // getTable(mainCustoms);
         }
 
         // Если target.id === '2', вывести головные таможни;
         if (evt.target.id === '2') {
-            // objClone = obj.slice(0);
-            // objHead = [];
-            // objClone.forEach((row) => {
-            //     var code = row['CODE'];
-            //     if (code.slice(5) === '000') {
-            //         objHead.push(row);
-            //     }
-            //     objClone = objHead;
-            // });
-
-            // evt.target.style = buttonStyleWhite;
-            // evt.target.classList.add('table-btn-active');
-            // removeChild(map);
-            // getTable();
-            // drawMap(objClone);
+            evt.target.style = buttonStyleWhite;
+            evt.target.classList.add('table-btn-active');
+            removeChild(map);
+            var headCustoms = getCustoms('head');
+            drawMap(headCustoms);
+            // getTable(headCustoms);
         }
 
         // Если target.id === '3', вывести посты акцизной таможни;

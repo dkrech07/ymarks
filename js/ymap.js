@@ -33,4 +33,4 @@ function drawMap(obj) {
     }
 }
 
-drawMap(getCustoms('main'));
+// drawMap(getCustoms('main'));
