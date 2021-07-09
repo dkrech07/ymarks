@@ -9,109 +9,68 @@ var removeChild = function(element) {
     }
 }
 
-var getTable = (objFiltered) => {
-    var html = "<table class='customs-table'>";
-
-    html += '<td>' + 'CODE' + '</td>';
-    html += '<td>' + 'NAMT' + '</td>';
-    html += '<td>' + 'NAME_ALL' + '</td>';
-    html += '<td>' + 'ADRTAM' + '</td>';
-    html += '<td>' + 'TELEFON' + '</td>';
-    html += '<td>' + 'FAX' + '</td>';
-    html += '<td>' + 'EMAIL' + '</td>';
-
-    for (var i = 0; i < objFiltered.length; i++) {
-        html += '<tr>';
-        html += '<td>' + objFiltered[i]['CODE'] + '</td>';
-        html += '<td>' + objFiltered[i]['NAMT'] + '</td>';
-        html += '<td>' + objFiltered[i]['NAME_ALL'] + '</td>';
-        html += '<td>' + objFiltered[i]['ADRTAM'] + '</td>';
-        html += '<td>' + objFiltered[i]['TELEFON'] + '</td>';
-        html += '<td>' + objFiltered[i]['FAX'] + '</td>';
-        html += '<td>' + objFiltered[i]['EMAIL'] + '</td>';
-        html += '</tr>';
+function doSmth(a) {
+    for (var q = 1, i = 1; q < a.length; ++q) {
+        if (a[q] !== a[q - 1]) {
+            a[i++] = a[q];
+        }
     }
-    document.getElementById('footer').innerHTML = html + '</table>';
+
+    a.length = i;
+    return a;
 }
 
-
-
 var customsTypes = [];
-objClone = obj.slice(0);
 
+// В параметрах функции передаем ['main', 'head'...];
 var getCustoms = (customsType) => {
+
     objFiltered = {
         'main': [],
         'head': [],
     };
 
-    // objMain = [];
-    // objHead = [];
-
-    if (customsTypes.length > 0) {
-        for (var i = 0; i < customsTypes.length; i++) {
-            if (customsTypes[i] === customsType) {
-                objFiltered[customsTypes[i]] = '';
-                delete customsTypes[i];
-            }
-        }
-    }
     customsTypes.push(customsType);
+
+
+    // if (customsTypes.length > 0) {
+    //     for (var i = 0; i < customsTypes.length; i++) {
+    //         if (customsTypes[i] === customsType) {
+    //             objFiltered[customsType] = [];
+    //             delete customsTypes[i];
+    //         }
+    //     }
+    // } else {
+    //
+    // }
+    console.log(customsTypes);
+    console.log(customsTypes.length);
 
     for (var customNumber = 0; customNumber < customsTypes.length; customNumber++) {
         if (customsTypes[customNumber] === 'main') {
-            objClone.forEach((row) => {
+            for (var i = 0; i < objClone.length; i++) {
+                var row = objClone[i];
                 var code = row['CODE'];
                 if (code.slice(5) !== '000' && code.slice(0, 5) !== '10009' && code.slice(0, 3) !== '121' && code.slice(0, 3) !== '122' && code.slice(0, 3) !== '123' && code.slice(0, 3) !== '124' && code.slice(0, 3) !== '125') {
                     objFiltered['main'].push(row);
                 }
-            });
+            }
         }
 
         if (customsTypes[customNumber] === 'head') {
-            objClone.forEach((row) => {
+            for (var i = 0; i < objClone.length; i++) {
+                var row = objClone[i];
                 var code = row['CODE'];
                 if (code.slice(5) === '000') {
                     objFiltered['head'].push(row);
                 }
-            });
+            }
         }
     }
 
-
-
-
-
-
-    //
-    // if (customsType === 'excise') {
-    //     objClone.forEach((row) => {
-    //         var code = row['CODE'];
-    //         if (code.slice(0, 5) === '10009') {
-    //             objHead.push(row);
-    //         }
-    //         // objClone = objHead;
-    //     });
-    // }
-    //
-    // if (customsType === 'others') {
-    //     objClone.forEach((row) => {
-    //         var code = row['CODE'];
-    //         if (code.slice(0, 3) === '121' || code.slice(0, 3) === '122' || code.slice(0, 3) === '123' || code.slice(0, 3) === '124' || code.slice(0, 3) === '125') {
-    //             objHead.push(row);
-    //         }
-    //         // objClone = objHead;
-    //     });
-    // }
     console.log(objFiltered);
     return objFiltered;
 };
-
-var map = document.getElementById('map');
-objClone = obj.slice(0);
-buttons[0].style = buttonStyleWhite;
-buttons[0].classList.add('table-btn-active');
-// getTable();
 
 buttons.forEach(element => {
     element.addEventListener('click', (evt) => {
@@ -129,6 +88,7 @@ buttons.forEach(element => {
             removeChild(map);
             var mainCustoms = getCustoms('main');
             drawMap(mainCustoms);
+
             // getTable(mainCustoms);
         }
 
@@ -139,45 +99,8 @@ buttons.forEach(element => {
             removeChild(map);
             var headCustoms = getCustoms('head');
             drawMap(headCustoms);
+
             // getTable(headCustoms);
-        }
-
-        // Если target.id === '3', вывести посты акцизной таможни;
-        if (evt.target.id === '3') {
-            // objClone = obj.slice(0);
-            // objHead = [];
-            // objClone.forEach((row) => {
-            //     var code = row['CODE'];
-            //     if (code.slice(0, 5) === '10009') {
-            //         objHead.push(row);
-            //     }
-            //     objClone = objHead;
-            // });
-
-            // evt.target.style = buttonStyleWhite;
-            // evt.target.classList.add('table-btn-active');
-            // removeChild(map);
-            // getTable();
-            // drawMap(objClone);
-        }
-
-        // Если target.id === '4', вывести прочие посты;
-        if (evt.target.id === '4') {
-            // objClone = obj.slice(0);
-            // objHead = [];
-            // objClone.forEach((row) => {
-            //     var code = row['CODE'];
-            //     if (code.slice(0, 3) === '121' || code.slice(0, 3) === '122' || code.slice(0, 3) === '123' || code.slice(0, 3) === '124' || code.slice(0, 3) === '125') {
-            //         objHead.push(row);
-            //     }
-            //     objClone = objHead;
-            // });
-
-            // evt.target.style = buttonStyleWhite;
-            // evt.target.classList.add('table-btn-active');
-            // removeChild(map);
-            // getTable();
-            // drawMap(objClone);
         }
 
     });

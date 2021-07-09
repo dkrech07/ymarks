@@ -1,4 +1,4 @@
-function drawMap(obj) {
+function drawMap(customsTypes) {
     ymaps.ready(init);
 
     function init() {
@@ -10,19 +10,36 @@ function drawMap(obj) {
         });
 
         var myCollection = new ymaps.GeoObjectCollection();
+        for (let customType in customsTypes) {
+            var obj = customsTypes[customType]
+            for (var i = 0; i < obj.length; i++) {
+                var row = obj[i];
+                var coords = row['COORDS'][0] + ',' + row['COORDS'][1];
+                var myPlacemark = new ymaps.Placemark(coords.split(","), {
+                    balloonContent: "'" + row['CODE'] + ' ' + row['NAMT'] + ' ' + row['ADRTAM'] + "'",
+                    iconCaption: "'" + row['CODE'] + ' ' + row['NAMT'] + "'"
+                }, {
+                    preset: 'islands#icon',
+                    iconColor: '#0000ff'
+                });
+                myCollection.add(myPlacemark);
+            }
+        }
 
-        obj.forEach((row) => {
-            var coords = row['COORDS'][0] + ',' + row['COORDS'][1];
-
-            var myPlacemark = new ymaps.Placemark(coords.split(","), {
-                balloonContent: "'" + row['CODE'] + ' ' + row['NAMT'] + ' ' + row['ADRTAM'] + "'",
-                iconCaption: "'" + row['CODE'] + ' ' + row['NAMT'] + "'"
-            }, {
-                preset: 'islands#icon',
-                iconColor: '#0000ff'
-            });
-            myCollection.add(myPlacemark);
-        });
+        // customType.forEach((obj) => {
+        //     obj.forEach((row) => {
+        //         var coords = row['COORDS'][0] + ',' + row['COORDS'][1];
+        //
+        //         var myPlacemark = new ymaps.Placemark(coords.split(","), {
+        //             balloonContent: "'" + row['CODE'] + ' ' + row['NAMT'] + ' ' + row['ADRTAM'] + "'",
+        //             iconCaption: "'" + row['CODE'] + ' ' + row['NAMT'] + "'"
+        //         }, {
+        //             preset: 'islands#icon',
+        //             iconColor: '#0000ff'
+        //         });
+        //         myCollection.add(myPlacemark);
+        //     });
+        // });
 
         myMap.geoObjects.add(myCollection);
 
@@ -33,4 +50,4 @@ function drawMap(obj) {
     }
 }
 
-// drawMap(getCustoms('main'));
+drawMap(getCustoms('main'));

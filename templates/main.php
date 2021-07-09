@@ -31,7 +31,8 @@
     <script type="text/javascript">
         var obj = <?php echo json_encode($list, JSON_UNESCAPED_UNICODE); ?>
     </script>
-        <script src="../js/script.js"></script>
+
+    <script src="../js/script.js"></script>
     <script src="../js/ymap.js"></script>
 
 </body>
