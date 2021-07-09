@@ -10,14 +10,14 @@ var removeChild = function(element) {
 }
 
 function doSmth(a) {
-    for (var q = 1, i = 1; q < a.length; ++q) {
-        if (a[q] !== a[q - 1]) {
-            a[i++] = a[q];
+    for (var q = 1, i = 1; q < customsTypes.length; ++q) {
+        if (customsTypes[q] !== customsTypes[q - 1]) {
+            customsTypes[i++] = customsTypes[q];
         }
     }
 
-    a.length = i;
-    return a;
+    customsTypes.length = i;
+    return customsTypes;
 }
 
 var customsTypes = [];
@@ -30,19 +30,22 @@ var getCustoms = (customsType) => {
         'head': [],
     };
 
+    // doSmth(customsType);
+
+    // customsTypes.push(customsType);
+    if (customsTypes.length > 0) {
+        for (var i = 0; i < customsTypes.length; i++) {
+            if (customsTypes[i] === customsType) {
+                objFiltered[customsType] = [];
+                customsTypes.splice(i, 1);
+                return objFiltered;
+            }
+        }
+    }
+
     customsTypes.push(customsType);
 
 
-    // if (customsTypes.length > 0) {
-    //     for (var i = 0; i < customsTypes.length; i++) {
-    //         if (customsTypes[i] === customsType) {
-    //             objFiltered[customsType] = [];
-    //             delete customsTypes[i];
-    //         }
-    //     }
-    // } else {
-    //
-    // }
     console.log(customsTypes);
     console.log(customsTypes.length);
 
