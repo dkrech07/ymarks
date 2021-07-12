@@ -9,45 +9,47 @@ var removeChild = function(element) {
     }
 }
 
-function doSmth(a) {
-    for (var q = 1, i = 1; q < customsTypes.length; ++q) {
-        if (customsTypes[q] !== customsTypes[q - 1]) {
-            customsTypes[i++] = customsTypes[q];
-        }
-    }
-
-    customsTypes.length = i;
-    return customsTypes;
-}
-
 var customsTypes = [];
 
 // В параметрах функции передаем ['main', 'head'...];
 var getCustoms = (customsType) => {
-
     objFiltered = {
         'main': [],
         'head': [],
     };
 
-    // doSmth(customsType);
-
-    // customsTypes.push(customsType);
-    if (customsTypes.length > 0) {
-        for (var i = 0; i < customsTypes.length; i++) {
-            if (customsTypes[i] === customsType) {
+    customsTypes.push(customsType);
+    var count = 0;
+    for (var i = 0; i < customsTypes.length; i++) {
+        if (customsTypes[i] === customsType) {
+            count++;
+            if (count>=2) {
+                console.log('Элемент повторяется два или более раз');
                 objFiltered[customsType] = [];
                 customsTypes.splice(i, 1);
-                return objFiltered;
+                customsTypes.splice(-1);
             }
+            // return objFiltered;
         }
     }
 
-    customsTypes.push(customsType);
+    // // customsTypes.push(customsType);
+    // if (customsTypes.length > 1) {
+
+    // }
 
 
-    console.log(customsTypes);
-    console.log(customsTypes.length);
+    // for (var i = 0; i < customsTypes.length; i++) {
+    //     if (customsTypes[i] === customsType) {
+    //         console.log('Совпадают:' + ' ' + customsTypes[i]);
+    //         // customsTypes.splice(i, 1);
+    //         // customsTypes.splice(-1);
+
+    //         // objFiltered[customsType] = [];
+    //         // return objFiltered;
+    //     }
+    // }
+    
 
     for (var customNumber = 0; customNumber < customsTypes.length; customNumber++) {
         if (customsTypes[customNumber] === 'main') {
@@ -72,6 +74,7 @@ var getCustoms = (customsType) => {
     }
 
     console.log(objFiltered);
+    console.log(customsTypes);
     return objFiltered;
 };
 
