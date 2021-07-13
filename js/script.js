@@ -5,7 +5,7 @@ var objClone = obj.slice(0);
 var buttonStyleBlue = 'background: #00bbd8; color: #ffffff;';
 var buttonStyleWhite = 'background: #ffffff; color: #00bbd8;';
 var map = document.querySelector('#map');
-var footer = document.querySelector('#footer');
+var tableFooter = document.querySelector('#table-footer');
 
 var removeChild = function(element) {
   while (element.firstChild) {
@@ -119,7 +119,7 @@ var getTable = (allObjFiltered) => {
         html += '<td>' + objFiltered[i]['EMAIL'] + '</td>';
         html += '</tr>';
       }
-      document.getElementById('footer').innerHTML = html + '</table>';
+      document.getElementById('table-footer').innerHTML = html + '</table>';
     }
 
   }
@@ -137,7 +137,7 @@ customsTypes.forEach(element => {
       var mainCustoms = getCustoms(customsType, check);
       checkButtons(0, check);
       removeChild(map);
-      removeChild(footer);
+      removeChild(tableFooter);
       drawMap(mainCustoms);
       getTable(mainCustoms);
     }
@@ -148,7 +148,7 @@ customsTypes.forEach(element => {
       var headCustoms = getCustoms(customsType, check);
       checkButtons(1, check);
       removeChild(map);
-      removeChild(footer);
+      removeChild(tableFooter);
       drawMap(headCustoms);
       getTable(headCustoms);
     }
@@ -159,7 +159,7 @@ customsTypes.forEach(element => {
       var exciseCustoms = getCustoms(customsType, check);
       checkButtons(2, check);
       removeChild(map);
-      removeChild(footer);
+      removeChild(tableFooter);
       drawMap(exciseCustoms);
       getTable(exciseCustoms);
     }
@@ -170,7 +170,7 @@ customsTypes.forEach(element => {
       var othersCustoms = getCustoms(customsType, check);
       checkButtons(3, check);
       removeChild(map);
-      removeChild(footer);
+      removeChild(tableFooter);
       drawMap(othersCustoms);
       getTable(othersCustoms);
     }

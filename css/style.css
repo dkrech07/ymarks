@@ -10,6 +10,7 @@
 
 .wrapper {
   margin: 0 auto;
+  padding-bottom: 35px;
 }
 
 .main-header {
@@ -100,6 +101,25 @@
 
 tr:nth-child(even) {
   background-color: #00bbd8;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  padding: 10px;
+  font-family: "PTSans", cursive;
+  font-size: 12px;
+  color: #ffffff;
+  width: 100%;
+  background-color: #00bbd8;
+  border-top: 2px solid #ffffff;
+}
+
+.footer .version-title {
+  display: block;
+  text-align: right;
+  padding-right: 20px;
+  vertical-align: middle;
 }
 
 /* margin: 0 auto;

@@ -32,7 +32,11 @@
         </form>
     </main>
 
-    <footer id="footer"></footer>
+    <div id="table-footer"></div>
+
+    <footer class="footer">
+      <span class="version-title">v. 0.7 alpha</span>
+    </footer>
 
     <script type="text/javascript">
         var obj = <?php echo json_encode($list, JSON_UNESCAPED_UNICODE); ?>
