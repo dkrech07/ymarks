@@ -1,11 +1,3 @@
-// var objClone = obj.slice(0);
-
-var removeChild = function(element) {
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
-    }
-}
-
 var getTable = (objFiltered) => {
     var html = "<table class='customs-table'>";
 
@@ -60,17 +52,17 @@ buttons.forEach(element => {
             evt.target.style = buttonStyleWhite;
             evt.target.classList.add('table-btn-active');
             removeChild(map);
-            drawMap(mainCustoms);
+            // drawMap(mainCustoms);
             // getTable(mainCustoms);
         }
 
         // Если target.id === '2', вывести головные таможни;
         if (evt.target.id === '2') {
-            evt.target.style = buttonStyleWhite;
-            evt.target.classList.add('table-btn-active');
+            // evt.target.style = buttonStyleWhite;
+            // evt.target.classList.add('table-btn-active');
             removeChild(map);
-            var headCustoms = getCustoms('head');
-            drawMap(headCustoms);
+            // var headCustoms = getCustoms('head');
+            // drawMap(headCustoms);
             // getTable(headCustoms);
         }
 
