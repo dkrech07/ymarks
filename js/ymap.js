@@ -1,5 +1,5 @@
 function drawMap(customsTypes) {
-    
+
     ymaps.ready(init);
 
     function init() {
@@ -51,4 +51,4 @@ function drawMap(customsTypes) {
     }
 }
 
-drawMap(getCustoms('main'));
+// drawMap(getCustoms('main'));

@@ -20,16 +20,17 @@
         <div id="map" style="width: 95%; height:550px"></div>
         <span class='customs-count'>Количество постов: </span>
 
-        <div class="customs-btns">
-          <label for="main">Все посты</label>
-          <input type="checkbox" id="main" name="main" value="">
-          <label for="head">Головные таможни</label>
-          <input type="checkbox" id="head" name="head" value="">
-          <label for="excise">Посты акцизной таможни</label>
-          <input type="checkbox" id="excise" name="excise" value="">
-          <label for="others">Прочие посты</label>
-          <input type="checkbox" id="others" name="others" value="">
-        </div>
+        <form class="customs-form" action="" method="post">
+            <label for="main">Все посты</label>
+            <input type="checkbox" id="main" name="main" value="">
+            <label for="head">Головные таможни</label>
+            <input type="checkbox" id="head" name="head" value="">
+            <label for="excise">Посты акцизной таможни</label>
+            <input type="checkbox" id="excise" name="excise" value="">
+            <label for="others">Прочие посты</label>
+            <input type="checkbox" id="others" name="others" value="">
+        </form>
+
         <!-- <ul>
             <li id='1' class='table-btn'>Все посты</li>
             <li id='2' class='table-btn'>+ Головные таможни</li>
