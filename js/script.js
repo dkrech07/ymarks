@@ -4,6 +4,8 @@ var customsTypesButtons = customsFormElement.querySelectorAll('label');
 var objClone = obj.slice(0);
 var buttonStyleBlue = 'background: #00bbd8; color: #ffffff;';
 var buttonStyleWhite = 'background: #ffffff; color: #00bbd8;';
+var map = document.querySelector('#map');
+var footer = document.querySelector('#footer');
 
 var removeChild = function(element) {
     while (element.firstChild) {
@@ -83,12 +85,11 @@ var getCustoms = (customsType, check) => {
 };
 
 var getTable = (allObjFiltered) => {
+    var html = "<table class='customs-table'>";
 
     for (objKey in allObjFiltered) {
         var objFiltered = allObjFiltered[objKey];
-
         if (objFiltered.length > 0) {
-            var html = "<table class='customs-table'>";
 
             html += '<td>' + 'CODE' + '</td>';
             html += '<td>' + 'NAMT' + '</td>';
@@ -110,7 +111,6 @@ var getTable = (allObjFiltered) => {
                 html += '</tr>';
             }
             document.getElementById('footer').innerHTML = html + '</table>';
-
         }
 
     }
@@ -128,6 +128,7 @@ customsTypes.forEach(element => {
             var mainCustoms = getCustoms(customsType, check);
             checkButtons(0, check);
             removeChild(map);
+            removeChild(footer);
             drawMap(mainCustoms);
             getTable(mainCustoms);
         }
@@ -138,6 +139,7 @@ customsTypes.forEach(element => {
             var headCustoms = getCustoms(customsType, check);
             checkButtons(1, check);
             removeChild(map);
+            removeChild(footer);
             drawMap(headCustoms);
             getTable(headCustoms);
         }
@@ -148,6 +150,7 @@ customsTypes.forEach(element => {
             var exciseCustoms = getCustoms(customsType, check);
             checkButtons(2, check);
             removeChild(map);
+            removeChild(footer);
             drawMap(exciseCustoms);
             getTable(exciseCustoms);
         }
@@ -158,6 +161,7 @@ customsTypes.forEach(element => {
             var othersCustoms = getCustoms(customsType, check);
             checkButtons(3, check);
             removeChild(map);
+            removeChild(footer);
             drawMap(othersCustoms);
             getTable(othersCustoms);
         }

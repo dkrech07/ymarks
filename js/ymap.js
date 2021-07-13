@@ -51,4 +51,7 @@ function drawMap(customsTypes) {
     }
 }
 
-// drawMap(getCustoms('main'));
+// var mainCustoms = getCustoms('main', true);
+// drawMap(mainCustoms);
+// getTable(mainCustoms);
+// checkButtons(0, true);
