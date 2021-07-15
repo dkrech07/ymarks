@@ -11,33 +11,34 @@
     <title>Where is my custom</title>
 </head>
 
-<body class="wrapper">
-    <header class="main-section main-header">
-        <b class="index-logo">Where is my customs?</b>
-    </header>
+<body>
+    <div class="wrapper">
+        <header class="main-section main-header">
+            <b class="index-logo">Where is my customs?</b>
+        </header>
 
-    <main>
-        <div id="map" style="width: 98%; height:500px"></div>
-        <span class='customs-count'>Количество постов: </span><span class='customs-count-number'></span>
+        <main>
+            <div id="map" style="width: 98%; height:350px"></div>
+            <span class='customs-count'>Количество постов: </span><span class='customs-count-number'></span>
 
-        <form class="customs-form" action="" method="post">
-            <label for="main">Все посты</label>
-            <input type="checkbox" id="main" name="main" value="" checked>
-            <label for="head">Головные таможни</label>
-            <input type="checkbox" id="head" name="head" value="">
-            <label for="excise">Посты акцизной таможни</label>
-            <input type="checkbox" id="excise" name="excise" value="">
-            <label for="others">Прочие посты</label>
-            <input type="checkbox" id="others" name="others" value="">
-        </form>
-    </main>
-
+            <form class="customs-form" action="" method="post">
+                <label for="main">Все посты</label>
+                <input type="checkbox" id="main" name="main" value="" checked>
+                <label for="head">Головные таможни</label>
+                <input type="checkbox" id="head" name="head" value="">
+                <label for="excise">Посты акцизной таможни</label>
+                <input type="checkbox" id="excise" name="excise" value="">
+                <label for="others">Прочие посты</label>
+                <input type="checkbox" id="others" name="others" value="">
+            </form>
+        </main>
+    </div>
     <div id="table-footer"></div>
-
-    <footer class="footer">
-      <span class="version-title">v. 0.7 alpha</span>
-    </footer>
-
+    <div class="wrapper">
+        <footer class="footer">
+          <span class="version-title">v. 0.7 alpha</span>
+        </footer>
+    </div>
     <script type="text/javascript">
         var obj = <?php echo json_encode($list, JSON_UNESCAPED_UNICODE); ?>
     </script>

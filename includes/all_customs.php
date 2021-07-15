@@ -1,6 +1,6 @@
 <?php
 
-$list = 
+$list =
 
 [
     [

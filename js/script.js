@@ -95,26 +95,24 @@ var getCustoms = (customsType, check) => {
 
 var getTable = (allObjFiltered) => {
     var html = "<table class='customs-table'>";
-
+    html += '<td>' + '№' + '</td>';
+    html += '<td>' + 'CODE' + '</td>';
+    html += '<td>' + 'NAMT' + '</td>';
+    html += '<td>' + 'NAME_ALL' + '</td>';
+    html += '<td>' + 'ADRTAM' + '</td>';
+    html += '<td>' + 'TELEFON' + '</td>';
+    html += '<td>' + 'FAX' + '</td>';
+    html += '<td>' + 'EMAIL' + '</td>';
+    var count = 1;
     for (objKey in allObjFiltered) {
         var objFiltered = allObjFiltered[objKey];
         if (objFiltered.length > 0) {
             html += '<tr>';
             html += "<td style='background: #ffffff' colspan='8'>" + objKey + "</td>";
             html += '</tr>';
-
-            html += '<td>' + '№' + '</td>';
-            html += '<td>' + 'CODE' + '</td>';
-            html += '<td>' + 'NAMT' + '</td>';
-            html += '<td>' + 'NAME_ALL' + '</td>';
-            html += '<td>' + 'ADRTAM' + '</td>';
-            html += '<td>' + 'TELEFON' + '</td>';
-            html += '<td>' + 'FAX' + '</td>';
-            html += '<td>' + 'EMAIL' + '</td>';
-
             for (var i = 0; i < objFiltered.length; i++) {
-                html += '<tr>';
-                html += '<td>' + (i + 1) + '</td>';
+                html += "<tr id = '" + objFiltered[i]['CODE'] + "'>";
+                html += '<td>' + (count++) + '</td>';
                 html += '<td>' + objFiltered[i]['CODE'] + '</td>';
                 html += '<td>' + objFiltered[i]['NAMT'] + '</td>';
                 html += '<td>' + objFiltered[i]['NAME_ALL'] + '</td>';

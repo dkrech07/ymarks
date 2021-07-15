@@ -10,16 +10,20 @@
 
 .wrapper {
     margin: 0 auto;
-    padding-bottom: 35px;
+    position: fixed;
+    z-index: 15;
+    width: 100%;
+    top: 0;
+    background-color: #ffffff;
 }
 
 .main-header {
     font-family: "Caveat Brush", cursive;
     font-size: 16px;
     color: #00bbd8;
-    width: 95%;
     margin: 0 auto;
     padding: 2px;
+    padding-left: 25px;
 }
 
 #map {
@@ -64,6 +68,12 @@
     border-bottom: 3px solid #ffffff;
 }
 
+#table-footer {
+    z-index: 10;
+    position: absolute;
+    top: 425px;
+}
+
 /* .customs-form::before {
     content: '';
     display: block;
@@ -103,6 +113,7 @@
     margin: 0 auto;
     font-family: "PTSans", cursive;
     width: 95%;
+    /* margin-top: 500px; */
 }
 
 .customs-table td {
@@ -111,6 +122,13 @@
     padding: 5px;
 }
 
+.customs-table-red {
+    border: 5px solid red;
+}
+
+/* .customs-table tr {
+    border: 5px solid red;
+} */
 tr:nth-child(even) {
     background-color: #00bbd8;
 }
