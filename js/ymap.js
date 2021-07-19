@@ -38,6 +38,11 @@ function drawMap(customsTypes) {
         myMap.geoObjects.events.add('click', function(e) {
             var code = e.get('target').properties._data.code;
             var table = document.querySelector('.customs-table');
+            var tableRows = document.querySelectorAll('tr');
+            tableRows.forEach((element) => {
+                element.classList.remove('customs-table-red')
+            });
+
             if (table) {
                 var tableRow = document.getElementById(code);
                 tableRow.classList.add('customs-table-red');

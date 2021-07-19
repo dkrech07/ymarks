@@ -30,6 +30,7 @@
                 <input type="checkbox" id="excise" name="excise" value="">
                 <label for="others">Прочие посты</label>
                 <input type="checkbox" id="others" name="others" value="">
+                <input type="button" name="Найти ближайшие посты">
             </form>
         </main>
     </div>
