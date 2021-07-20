@@ -152,6 +152,34 @@ tr:nth-child(even) {
     vertical-align: middle;
 }
 
+.customs-popup {
+    position: absolute;
+    right: 100px;
+    top: 75px;
+    width: 500px;
+    height: 500px;
+    background-color: #ffffff;
+    color: #000000;
+    z-index: 100;
+    padding: 10px;
+    border: 5px solid #00bbd8;
+}
+
+.customs-popup h1, .customs-popup h2 {
+    font-family: "PTSans", cursive;
+    font-size: 14px;
+    color: #000000;
+    text-align: center;
+}
+
+.customs-popup .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #00bbd8;
+    cursor: pointer;
+}
+
 /* margin: 0 auto;
 margin-top: -2px;
 margin-bottom: 5px;

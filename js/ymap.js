@@ -52,6 +52,38 @@ function drawMap(customsTypes) {
                 });
             }
         });
+
+        var getNearestCustoms = () => {
+            var popupWrapper = document.querySelector('.popup-wrapper');
+            removeChild(popupWrapper);
+
+            var html = "<div class='customs-popup'>";
+            html += '<h1>' + 'Вы искали:' + '</h1>';
+            html += '<h2>' + 'Ближайшие таможенные посты:' + '</h2>';
+            html += "<span class='close'>" + 'Закрыть' + '</span>';
+            // html += '<h1>' + 'Вы искали: ' + currentAddress + '</h1>';
+
+            html += '</div>';
+            popupWrapper.insertAdjacentHTML("afterbegin", html);
+
+            var popupCloseButton = document.querySelector('.close');
+            popupCloseButton.addEventListener('click', evt => {
+                removeChild(popupWrapper);
+            });
+        }
+
+        var searchControl = myMap.controls.get('searchControl');
+        // searchControl.search('Московская, 4');
+        // getNearestCustoms('Московская, 4');
+        searchControl.events.add('load', function(event) {
+            var geoObjectsArray = searchControl.getResultsArray();
+            console.log(geoObjectsArray[0].properties.get('name'));
+            var currentAddress = geoObjectsArray[0].properties.get('name');
+            getNearestCustoms();
+        });
+
+
+
     }
 }
 
