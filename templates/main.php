@@ -19,7 +19,7 @@
         </header>
 
         <main>
-            <div id="map" style="width: 98%; height:350px"></div>
+            <div id="map" style="width: 98%; height:550px"></div>
             <span class='customs-count'>Количество постов: </span><span class='customs-count-number'></span>
 
             <form class="customs-form" action="" method="post">

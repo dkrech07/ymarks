@@ -53,12 +53,14 @@ function drawMap(customsTypes) {
             }
         });
 
-        var getNearestCustoms = () => {
+        var getNearestCustoms = (address, coords) => {
             var popupWrapper = document.querySelector('.popup-wrapper');
             removeChild(popupWrapper);
 
             var html = "<div class='customs-popup'>";
-            html += '<h1>' + 'Вы искали:' + '</h1>';
+            html += '<h1>' + 'Вы искали: ' + address + '</h1>';
+            html += '<p>' + 'Его координаты: ' + coords + '</p>';
+
             html += '<h2>' + 'Ближайшие таможенные посты:' + '</h2>';
             html += "<span class='close'>" + 'Закрыть' + '</span>';
             // html += '<h1>' + 'Вы искали: ' + currentAddress + '</h1>';
@@ -77,9 +79,58 @@ function drawMap(customsTypes) {
         // getNearestCustoms('Московская, 4');
         searchControl.events.add('load', function(event) {
             var geoObjectsArray = searchControl.getResultsArray();
-            console.log(geoObjectsArray[0].properties.get('name'));
+            var address = geoObjectsArray[0].properties.get('name');
+            var coords = geoObjectsArray[0].geometry._coordinates;
+
+
+
+            var allCoords = [].sort();
+            objClone.forEach((element) => {
+                allCoords.push(element['COORDS']);
+            });
+
+            var nearestCoords = {
+                'nearest': [],
+                'away': [],
+                'far': [],
+            };
+
+            allCoords.forEach((element) => {
+                var x = element[0] - coords[0];
+                var y = element[1] - coords[1];
+
+                if (x < 5 && y < 5) {
+                    nearestCoords['nearest'].push(element);
+                } else if (x < 7 && y < 7) {
+                    nearestCoords['away'].push(element);
+                } else {
+                    nearestCoords['far'].push(element);
+                }
+            });
+
+            nearestCoords['nearest'].sort()
+
+            var nearestCustoms = [];
+            // for (var i = 0; i < objClone.length; i++) {
+            //     for (var j = 0; j < nearestCoords['nearest'].length; j++) {
+            //         console.log(objClone[i]['COORDS']);
+            //         if (objClone[i]['COORDS'] === nearestCoords['nearest'][j]) {
+            //             nearestCustoms.push(objClone[i]);
+            //         }
+            //     }
+            // }
+            for (var i = 0; i < nearestCoords['nearest'].length; i++) {
+                for (var j = 0; j < objClone.length; j++) {
+                    if (nearestCoords['nearest'][i] === objClone[j]['COORDS']) {
+                        nearestCustoms.push(objClone[j]);
+                    }
+                }
+            }
+
+            console.log(nearestCustoms);
+
             var currentAddress = geoObjectsArray[0].properties.get('name');
-            getNearestCustoms();
+            getNearestCustoms(address, coords);
         });
 
 

@@ -71,7 +71,9 @@
 #table-footer {
     z-index: 10;
     position: absolute;
-    top: 425px;
+    top: 625px;
+    width: 98%;
+    padding-bottom: 25px;
 }
 
 /* .customs-form::before {
@@ -153,7 +155,7 @@ tr:nth-child(even) {
 }
 
 .customs-popup {
-    position: absolute;
+    position: fixed;
     right: 100px;
     top: 75px;
     width: 500px;
@@ -163,6 +165,7 @@ tr:nth-child(even) {
     z-index: 100;
     padding: 10px;
     border: 5px solid #00bbd8;
+    border-top: 35px solid #00bbd8;
 }
 
 .customs-popup h1, .customs-popup h2 {
