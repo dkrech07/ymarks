@@ -104,6 +104,7 @@ function drawMap(customsTypes) {
             html += '<table>';
             for (var i = 0; i < nearestCustoms.length; i++) {
                 html += "<tr id = '" + nearestCustoms[i]['CODE'] + "'>";
+                html += '<td>' + nearestCustoms[i]['COORDS'] + '</td>';
                 html += '<td>' + nearestCustoms[i]['CODE'] + '</td>';
                 html += '<td>' + nearestCustoms[i]['NAMT'] + '</td>';
                 // html += '<td>' + nearestCustoms[i]['NAME_ALL'] + '</td>';
@@ -151,14 +152,17 @@ function drawMap(customsTypes) {
             allCoords.forEach((element) => {
                 var x = element[0] - coords[0];
                 var y = element[1] - coords[1];
-
-                if (x < 5 && y < 5) {
+                console.log(x);
+                console.log(y);
+                if (x < 0.05 && x > -0.05) {
                     nearestCoords['nearest'].push(element);
-                } else if (x < 7 && y < 7) {
-                    nearestCoords['away'].push(element);
-                } else {
-                    nearestCoords['far'].push(element);
                 }
+
+                // else if (x < 2 && y < 2) {
+                //     nearestCoords['away'].push(element);
+                // } else {
+                //     nearestCoords['far'].push(element);
+                // }
             });
 
             nearestCoords['nearest'].sort()
@@ -175,6 +179,7 @@ function drawMap(customsTypes) {
 
             var currentAddress = geoObjectsArray[0].properties.get('name');
             getNearestCustoms(address, coords, nearestCustoms);
+
         });
 
 
