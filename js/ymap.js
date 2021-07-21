@@ -53,7 +53,44 @@ function drawMap(customsTypes) {
             }
         });
 
-        var getNearestCustoms = (address, coords) => {
+        var getTableNearestCustoms = (allObjFiltered) => {
+            var html = "<table class='customs-table'>";
+            html += '<td>' + '№' + '</td>';
+            html += '<td>' + 'CODE' + '</td>';
+            html += '<td>' + 'NAMT' + '</td>';
+            html += '<td>' + 'NAME_ALL' + '</td>';
+            html += '<td>' + 'ADRTAM' + '</td>';
+            html += '<td>' + 'TELEFON' + '</td>';
+            html += '<td>' + 'FAX' + '</td>';
+            html += '<td>' + 'EMAIL' + '</td>';
+            var count = 1;
+            for (objKey in allObjFiltered) {
+                var objFiltered = allObjFiltered[objKey];
+                if (objFiltered.length > 0) {
+                    html += '<tr>';
+                    html += "<td style='background: #ffffff' colspan='8'>" + objKey + "</td>";
+                    html += '</tr>';
+                    for (var i = 0; i < objFiltered.length; i++) {
+                        html += "<tr id = '" + objFiltered[i]['CODE'] + "'>";
+                        html += '<td>' + (count++) + '</td>';
+                        html += '<td>' + objFiltered[i]['CODE'] + '</td>';
+                        html += '<td>' + objFiltered[i]['NAMT'] + '</td>';
+                        html += '<td>' + objFiltered[i]['NAME_ALL'] + '</td>';
+                        html += '<td>' + objFiltered[i]['ADRTAM'] + '</td>';
+                        html += '<td>' + objFiltered[i]['TELEFON'] + '</td>';
+                        html += '<td>' + objFiltered[i]['FAX'] + '</td>';
+                        html += '<td>' + objFiltered[i]['EMAIL'] + '</td>';
+                        html += '</tr>';
+                    }
+                    var popup = document.querySelector('.customs-popup');
+                    popup.innerHTML = html + '</table>';
+                }
+
+            }
+
+        }
+
+        var getNearestCustoms = (address, coords, nearestCustoms) => {
             var popupWrapper = document.querySelector('.popup-wrapper');
             removeChild(popupWrapper);
 
@@ -63,6 +100,22 @@ function drawMap(customsTypes) {
 
             html += '<h2>' + 'Ближайшие таможенные посты:' + '</h2>';
             html += "<span class='close'>" + 'Закрыть' + '</span>';
+
+            html += '<table>';
+            for (var i = 0; i < nearestCustoms.length; i++) {
+                html += "<tr id = '" + nearestCustoms[i]['CODE'] + "'>";
+                html += '<td>' + nearestCustoms[i]['CODE'] + '</td>';
+                html += '<td>' + nearestCustoms[i]['NAMT'] + '</td>';
+                // html += '<td>' + nearestCustoms[i]['NAME_ALL'] + '</td>';
+                // html += '<td>' + nearestCustoms[i]['ADRTAM'] + '</td>';
+                html += '<td>' + nearestCustoms[i]['TELEFON'] + '</td>';
+                // html += '<td>' + nearestCustoms[i]['FAX'] + '</td>';
+                // html += '<td>' + nearestCustoms[i]['EMAIL'] + '</td>';
+                html += '</tr>';
+            }
+            html += '</table>';
+
+
             // html += '<h1>' + 'Вы искали: ' + currentAddress + '</h1>';
 
             html += '</div>';
@@ -111,26 +164,17 @@ function drawMap(customsTypes) {
             nearestCoords['nearest'].sort()
 
             var nearestCustoms = [];
-            // for (var i = 0; i < objClone.length; i++) {
-            //     for (var j = 0; j < nearestCoords['nearest'].length; j++) {
-            //         console.log(objClone[i]['COORDS']);
-            //         if (objClone[i]['COORDS'] === nearestCoords['nearest'][j]) {
-            //             nearestCustoms.push(objClone[i]);
-            //         }
-            //     }
-            // }
+
             for (var i = 0; i < nearestCoords['nearest'].length; i++) {
                 for (var j = 0; j < objClone.length; j++) {
-                    if (nearestCoords['nearest'][i] === objClone[j]['COORDS']) {
+                    if (nearestCoords['nearest'][i] == objClone[j]['COORDS']) {
                         nearestCustoms.push(objClone[j]);
                     }
                 }
             }
 
-            console.log(nearestCustoms);
-
             var currentAddress = geoObjectsArray[0].properties.get('name');
-            getNearestCustoms(address, coords);
+            getNearestCustoms(address, coords, nearestCustoms);
         });
 
 
