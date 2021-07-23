@@ -154,7 +154,7 @@ function drawMap(customsTypes) {
                 var y = element[1] - coords[1];
                 console.log(x);
                 console.log(y);
-                if (x < 0.05 && x > -0.05) {
+                if (x < 0.05 && x > -0.05 && y < 0.05 && y > -0.05) {
                     nearestCoords['nearest'].push(element);
                 }
 
@@ -182,12 +182,12 @@ function drawMap(customsTypes) {
 
         });
 
-
-
+        // const popup = document.querySelector('.customs-popup');
+        // popup.addEventListener('');
     }
 }
 
 var mainCustoms = getCustoms('main', true);
 drawMap(mainCustoms);
-getTable(mainCustoms);
+// getTable(mainCustoms);
 checkButtons(0, true);

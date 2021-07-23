@@ -25,9 +25,9 @@
 
 #map {
     margin: 0 auto;
-    padding: 3px;
+    padding: 4px;
     border-top: 2px solid #00bbd8;
-    width: 95%;
+    width: 100%;
 }
 
 .customs-count,
@@ -49,7 +49,7 @@
 .customs-form {
     display: block;
     margin: 0 auto;
-    padding: 4px 0;
+    padding: 20px 0;
     list-style-type: none;
     background-color: #00bbd8;
     text-align: center;
@@ -61,7 +61,7 @@
     margin: 0;
     padding: 0;
     margin-right: 30px;
-    padding: 0px 10px;
+    padding: 5px 10px;
     height: 22px;
     border: 1px solid #ffffff;
     font-family: "PTSans";
@@ -75,8 +75,8 @@
 }
 
 #table-footer {
-    height: 300px;
-    overflow-y: scroll;
+    /* height: 300px; */
+    /* overflow-y: scroll; */
 }
 
 .customs-table {
@@ -105,20 +105,20 @@ tr:nth-child(even) {
 .footer {
     position: fixed;
     bottom: 0;
-    padding: 5px;
+    padding: 2px;
     font-family: "PTSans", cursive;
     font-size: 12px;
     color: #ffffff;
     width: 100%;
     background-color: #00bbd8;
-    border-top: 2px solid #ffffff;
+    border-top: 1px solid #ffffff;
 }
 
 .footer .version-title {
-    display: block;
+    /* display: block;
     text-align: right;
     padding-right: 20px;
-    vertical-align: middle;
+    vertical-align: middle; */
 }
 
 .customs-popup {

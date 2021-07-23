@@ -19,7 +19,7 @@
         </header>
 
         <main>
-            <div id="map" style="width: 98%; height:550px"></div>
+            <div id="map" style="width: 100%; height: 800px"></div>
             <span class='customs-count'>Количество постов: </span><span class='customs-count-number'></span>
 
             <form class="customs-form" action="" method="post">
@@ -31,7 +31,8 @@
                 <input type="checkbox" id="excise" name="excise" value="">
                 <label for="others">Прочие посты</label>
                 <input type="checkbox" id="others" name="others" value="">
-                <input type="button" name="Найти ближайшие посты">
+                <label for="table">Показать таблицу</label>
+                <input type="checkbox" id="table" name="table" value="">
             </form>
         </main>
     </div>

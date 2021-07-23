@@ -133,49 +133,74 @@ customsTypes.forEach(element => {
     element.addEventListener('click', (evt) => {
         var customsType = evt.target.id;
         var check = evt.target.checked;
+        console.log(customsType);
+        console.log(check);
+        var customsList = getCustoms(customsType, check);
 
         if (evt.target.id === 'main') {
             customsTypesButtons[0].style = buttonStyleWhite;
             customsTypesButtons[0].classList.add('table-btn-active');
-            var mainCustoms = getCustoms(customsType, check);
+            // var mainCustoms = getCustoms(customsType, check);
             checkButtons(0, check);
             removeChild(map);
             removeChild(tableFooter);
-            drawMap(mainCustoms);
-            getTable(mainCustoms);
+            drawMap(customsList);
+            // getTable(mainCustoms);
         }
 
         if (evt.target.id === 'head') {
             customsTypesButtons[1].style = buttonStyleWhite;
             customsTypesButtons[1].classList.add('table-btn-active');
-            var headCustoms = getCustoms(customsType, check);
+            // var headCustoms = getCustoms(customsType, check);
             checkButtons(1, check);
             removeChild(map);
             removeChild(tableFooter);
-            drawMap(headCustoms);
-            getTable(headCustoms);
+            drawMap(customsList);
+            // getTable(headCustoms);
         }
 
         if (evt.target.id === 'excise') {
             customsTypesButtons[2].style = buttonStyleWhite;
             customsTypesButtons[2].classList.add('table-btn-active');
-            var exciseCustoms = getCustoms(customsType, check);
+            // var exciseCustoms = getCustoms(customsType, check);
             checkButtons(2, check);
             removeChild(map);
             removeChild(tableFooter);
-            drawMap(exciseCustoms);
-            getTable(exciseCustoms);
+            drawMap(customsList);
+            // getTable(exciseCustoms);
         }
 
         if (evt.target.id === 'others') {
             customsTypesButtons[3].style = buttonStyleWhite;
             customsTypesButtons[3].classList.add('table-btn-active');
-            var othersCustoms = getCustoms(customsType, check);
+            // var othersCustoms = getCustoms(customsType, check);
             checkButtons(3, check);
             removeChild(map);
             removeChild(tableFooter);
-            drawMap(othersCustoms);
-            getTable(othersCustoms);
+            drawMap(customsList);
+            // getTable(othersCustoms);
+        }
+
+        if (evt.target.id === 'table') {
+            customsTypesButtons[4].style = buttonStyleWhite;
+            customsTypesButtons[4].classList.add('table-btn-active');
+            checkButtons(4, check);
+
+            if (customsType === 'table' && check === true) {
+                removeChild(map);
+                drawMap(customsList);
+                map.style.height = '300px';
+                getTable(customsList);
+            } else if (customsType === 'table' && check === false) {
+                removeChild(map);
+                drawMap(customsList);
+                map.style.height = '800px';
+                removeChild(tableFooter);
+            }
+            // var othersCustoms = getCustoms(customsType, check);
+            // removeChild(map);
+            // removeChild(tableFooter);
+            // drawMap(othersCustoms);
         }
     });
 });
