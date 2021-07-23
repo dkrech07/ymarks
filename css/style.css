@@ -47,6 +47,8 @@
 }
 
 .customs-form {
+    /* width: 100%; */
+    position: relative;
     display: block;
     margin: 0 auto;
     padding: 20px 0;
@@ -74,11 +76,10 @@
     display: none;
 }
 
-#table-footer {
-    /* height: 300px; */
-    /* overflow-y: scroll; */
-}
-
+/* #table-footer {
+    height: 300px;
+    overflow-y: scroll;
+} */
 .customs-table {
     border-collapse: collapse;
     font-size: 12px;
@@ -149,4 +150,16 @@ tr:nth-child(even) {
     top: 10px;
     color: #00bbd8;
     cursor: pointer;
+}
+
+.table {
+    z-index: 5;
+    position: absolute;
+    bottom: -25px;
+    left: 45%;
+    width: 140px;
+    /* bottom: -30px; */
+    /* left: 50%; */
+    background: red;
+    font-size: 0;
 }

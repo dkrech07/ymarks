@@ -189,12 +189,14 @@ customsTypes.forEach(element => {
             if (customsType === 'table' && check === true) {
                 removeChild(map);
                 drawMap(customsList);
-                map.style.height = '300px';
+                map.style.height = '500px';
+                tableFooter.style = 'height: 300px; overflow-y: scroll;';
                 getTable(customsList);
             } else if (customsType === 'table' && check === false) {
                 removeChild(map);
                 drawMap(customsList);
                 map.style.height = '800px';
+                tableFooter.style = 'height: 0px;';
                 removeChild(tableFooter);
             }
             // var othersCustoms = getCustoms(customsType, check);
