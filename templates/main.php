@@ -40,7 +40,7 @@
     <div id="table-footer"></div>
 
     <footer class="footer">
-         <span class="version-title">v. 0.7 alpha</span>
+         <span class="version-title">test</span>
     </footer>
 
     <script type="text/javascript">

@@ -182,9 +182,9 @@ customsTypes.forEach(element => {
         }
 
         if (evt.target.id === 'table') {
-            customsTypesButtons[4].style = buttonStyleWhite;
-            customsTypesButtons[4].classList.add('table-btn-active');
-            checkButtons(4, check);
+            // customsTypesButtons[4].style = buttonStyleWhite;
+            // customsTypesButtons[4].classList.add('table-btn-active');
+            // checkButtons(4, check);
 
             if (customsType === 'table' && check === true) {
                 removeChild(map);
@@ -195,7 +195,7 @@ customsTypes.forEach(element => {
             } else if (customsType === 'table' && check === false) {
                 removeChild(map);
                 drawMap(customsList);
-                map.style.height = '800px';
+                map.style.height = '700px';
                 tableFooter.style = 'height: 0px;';
                 removeChild(tableFooter);
             }
