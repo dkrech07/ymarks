@@ -77,13 +77,20 @@
     display: none;
 }
 
+#table-footer {
+    margin-top: 30px;
+}
+
 .customs-table {
+    position: relative;
+    z-index: 10;
     border-collapse: collapse;
     font-size: 12px;
     margin: 0 auto;
     font-family: "PTSans", cursive;
     width: 95%;
     height: 200px;
+    background: #ffffff;
 }
 
 .customs-table td {
@@ -142,7 +149,7 @@ tr:nth-child(even) {
     cursor: pointer;
 }
 
-label.table {
+label.table-bottom {
     z-index: 5;
     top: 30px;
     position: absolute;
@@ -150,22 +157,52 @@ label.table {
     border: none;
     left: 50%;
     background: none;
-    width: 20px;
-    height: 30px;
-    border-top: 40px solid #00bbd8;
-    border-right: 40px solid #00bbd8;
+    width: 10px;
+    height: 20px;
+    border-top: 30px solid #00bbd8;
+    border-right: 30px solid #00bbd8;
     transform: rotate(135deg);
     background-color: #00bbd8;
 }
 
-label.table::before {
+label.table-bottom::before {
     content: "";
-    bottom: 35px;
-    left: 35px;
+    bottom: 28px;
+    left: 30px;
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     display: block;
     background-image: url("../img/icons8-click.png");
+    background-repeat: no-repeat;
+    transform: rotate(225deg);
+}
+
+label.table-top {
+    z-index: 5;
+    top: 85px;
+    position: absolute;
+    font-size: 0;
+    border: none;
+    left: 50%;
+    background: none;
+    width: 10px;
+    height: 20px;
+    border-top: 30px solid #00bbd8;
+    border-right: 30px solid #00bbd8;
+    transform: rotate(135deg);
+    background-color: #00bbd8;
+}
+
+label.table-top::before {
+    content: "";
+    bottom: 0px;
+    left: 0px;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    display: block;
+    background-image: url("../img/icons8-click.png");
+    background-repeat: no-repeat;
     transform: rotate(225deg);
 }

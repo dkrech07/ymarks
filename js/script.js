@@ -6,6 +6,7 @@ var buttonStyleBlue = 'background: #00bbd8; color: #ffffff;';
 var buttonStyleWhite = 'background: #ffffff; color: #00bbd8;';
 var map = document.querySelector('#map');
 var tableFooter = document.querySelector('#table-footer');
+var tableButtonElement = document.querySelector('.table');
 
 var removeChild = function(element) {
     while (element.firstChild) {
@@ -191,12 +192,20 @@ customsTypes.forEach(element => {
                 drawMap(customsList);
                 map.style.height = '500px';
                 tableFooter.style = 'height: 300px; overflow-y: scroll;';
+
+                tableButtonElement.classList.remove('table-bottom');
+                tableButtonElement.classList.add('table-top');
+
                 getTable(customsList);
             } else if (customsType === 'table' && check === false) {
                 removeChild(map);
                 drawMap(customsList);
                 map.style.height = '700px';
                 tableFooter.style = 'height: 0px;';
+
+                tableButtonElement.classList.remove('table-top');
+                tableButtonElement.classList.add('table-bottom');
+
                 removeChild(tableFooter);
             }
             // var othersCustoms = getCustoms(customsType, check);

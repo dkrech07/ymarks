@@ -32,7 +32,7 @@
             <input type="checkbox" id="excise" name="excise" value="">
             <label for="others">Прочие посты</label>
             <input type="checkbox" id="others" name="others" value="">
-            <label class="table" for="table">Показать таблицу</label>
+            <label class="table table-bottom" for="table">Показать таблицу</label>
             <input type="checkbox" id="table" name="table" value="">
         </form>
     </main>
